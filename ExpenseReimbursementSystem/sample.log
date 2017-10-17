@@ -1,0 +1,73 @@
+2017-10-12 23:31:46 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:33:51 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:34:06 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:34:36 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:34:43 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:34:58 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:35:43 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:35:43 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:36:10 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:36:10 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:37:05 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:37:05 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:37:38 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:37:38 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:37:46 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:37:46 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:41:49 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:41:49 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:42:20 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:42:20 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:42:33 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:42:33 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:42:51 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:42:51 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:43:11 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:43:11 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:43:37 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:43:37 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:44:07 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:44:07 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:44:25 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:44:25 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-12 23:44:46 DEBUG root:20 - Attempting database retrieval
+2017-10-12 23:44:46 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 08:57:46 DEBUG root:20 - Attempting database retrieval
+2017-10-13 08:57:46 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 08:57:59 DEBUG root:20 - Attempting database retrieval
+2017-10-13 08:57:59 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 08:58:10 DEBUG root:20 - Attempting database retrieval
+2017-10-13 08:58:10 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 08:59:07 DEBUG root:20 - Attempting database retrieval
+2017-10-13 08:59:07 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 08:59:37 DEBUG root:20 - Attempting database retrieval
+2017-10-13 08:59:37 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:02:55 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:02:55 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:03:32 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:03:32 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:03:59 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:03:59 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:04:13 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:04:13 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:04:36 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:04:36 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 09:09:27 DEBUG root:20 - Attempting database retrieval
+2017-10-13 09:09:27 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 11:01:22 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 11:02:23 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 11:03:37 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 11:04:04 TRACE root:18 - Ers Users Roles Retrieval Failed
+2017-10-13 11:05:38 DEBUG root:30 - Data Retrieval from ERS_USER_ROLES is successful for 1
+2017-10-13 11:05:38 TRACE root:16 - Ers Users Roles data retrieved ErsUserRoles [ErsUserRoleId=1, UserRole=EMPLOYEE]
+2017-10-13 11:06:24 DEBUG root:30 - Data Retrieval from ERS_USER_ROLES is successful for 1
+2017-10-13 11:06:24 TRACE root:16 - Ers Users Roles data retrieved ErsUserRoles [ErsUserRoleId=1, UserRole=EMPLOYEE]
+2017-10-13 11:06:36 DEBUG root:21 - Attempting database retrieval
+2017-10-13 11:06:36 DEBUG root:29 - Data Retrieval from ERS_USER_ROLES is successful for 1
+2017-10-13 11:06:36 TRACE root:16 - Ers Users Roles data retrieved ErsUserRoles [ErsUserRoleId=1, UserRole=EMPLOYEE]
+2017-10-13 16:35:29 DEBUG root:20 - Attempting database retrieval
+2017-10-13 16:35:29 DEBUG root:27 - Data Retrieval from ERS_USER_ROLES is successful for 1
+2017-10-13 16:35:29 TRACE root:16 - Ers Users Roles data retrieved ErsUserRoles [ErsUserRoleId=1, UserRole=EMPLOYEE]
+2017-10-16 16:51:27 DEBUG root:20 - Attempting database retrieval
+2017-10-16 16:51:27 DEBUG root:27 - Data Retrieval from ERS_USER_ROLES is successful for 1
+2017-10-16 16:51:27 TRACE root:16 - Ers Users Roles data retrieved ErsUserRoles [ErsUserRoleId=1, UserRole=EMPLOYEE]
