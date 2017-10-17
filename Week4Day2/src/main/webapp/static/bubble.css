@@ -1,0 +1,14 @@
+.outter {
+	background-color: red;
+	padding: 25px;
+}
+
+.middle { 
+	background-color: purple;
+	padding: 25px;
+}
+
+.inner {
+	background-color: blue;
+	padding: 25px;
+}
