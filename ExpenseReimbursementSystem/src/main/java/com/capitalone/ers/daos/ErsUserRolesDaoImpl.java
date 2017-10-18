@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 
 import com.capitalone.ers.beans.ErsUserRoles;
@@ -35,4 +37,5 @@ public class ErsUserRolesDaoImpl implements ErsUserRolesDao {
 		}
 		return null;
 	}
+
 }

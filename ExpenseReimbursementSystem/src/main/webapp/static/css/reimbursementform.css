@@ -1,0 +1,19 @@
+body {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  background-color: rgba(224, 236, 243, 0.911);
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  line-height: 150%;
+  box-shadow: 10px 10px 5px #888888;
+  font-size: 16px;
+  background-color: rgb(164, 215, 243);
+}
+
+.label-only{
+  vertical-align: top;
+}

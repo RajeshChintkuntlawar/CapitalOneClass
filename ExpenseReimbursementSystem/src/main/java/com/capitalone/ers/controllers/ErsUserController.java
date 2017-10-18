@@ -14,6 +14,7 @@ public class ErsUserController {
 
 	private Logger log = Logger.getRootLogger();
 	private ErsUsersService ersUsers = new ErsUsersService();
+	private EmployeeController employeeController = new EmployeeController();
 
 	public void processPostRequests(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String requestUrl = req.getRequestURI().substring(req.getContextPath().length());
@@ -21,7 +22,7 @@ public class ErsUserController {
 		log.trace("in processPostRequests with URL " + requestUrl);
 
 		switch (requestUrl) {
-		case "/static/ErsLogin.html":
+		case "/ErsLogin":
 			log.trace("Continue with User Login");
 			retrieveUserRole(req, resp);
 			break;
@@ -39,11 +40,13 @@ public class ErsUserController {
 			log.debug("User Role " + ersUserRoles.getUserRole());
 
 			if (ersUserRoles.getUserRole().equals("EMPLOYEE")) {
-				resp.sendRedirect("/ExpenseReimbursementSystem/static/employee.html");
+				employeeController.processEmployeeRequests(resp);
+//				resp.sendRedirect("/ExpenseReimbursementSystem/static/employee.html");
 			} else {
 				resp.sendRedirect("/ExpenseReimbursementSystem/static/manager.html");
 			}
 		} else {
+			resp.sendRedirect("/ExpenseReimbursementSystem/static/ErsLogin.html");
 			log.fatal("Failed to retrieve the User Role");
 		}
 	}

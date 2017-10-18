@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Reimbursement</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/reimbursementform.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+    <form class="form-signin">
+      <h2 class="form-signin-heading">Submit New Reimbursement Request</h2>
+       Reimbursement Type: <select name="ReimbursementType">
+          <option value="LODGING">LODGING</option>
+          <option value="TRAVEL">TRAVEL</option>
+          <option value="FOOD">FOOD</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+        
+        <br> Reimbursement Amount: <input type="text" name="ReimbursementAmount" placeholder="Enter Amount">
+        <br> <label for="ReimbursementDescription" class="label-only">Reimbursement Description:</label>
+        <textarea name="ReimbursementDescription" rows="4" cols="30" maxlength="250" placeholder="Enter expense description here."></textarea>
+        <br>Select Receipt to upload: <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="upload">
+        <br><br>
+      <button type="submit" value="Submit Request">Submit</button>
+      <button type="reset" value="Reset">Reset Data</button>
+    </form>
+  </div>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>

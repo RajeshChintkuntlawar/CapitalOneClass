@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-public class FinanceManagerController {
+public class ManagerController {
 
 	private Logger log = Logger.getRootLogger();
 
@@ -27,6 +27,11 @@ public class FinanceManagerController {
 	private void viewReimbursements(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public static void processManagerRequests(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

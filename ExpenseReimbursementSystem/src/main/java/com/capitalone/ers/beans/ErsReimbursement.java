@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 public class ErsReimbursement {
 	private int ReimbId;
-	private String ReimbAmount;
+	private Double ReimbAmount;
 	private Timestamp ReimbSubmitted;
 	private Timestamp ReimbResolved;
 	private String ReimbDescription;
-	private String ReimbReceipt;
+	private Byte ReimbReceipt;
 	private int ReimbAuthor;
 	private int ReimbResolver;
 	private int ReimbStatusId;
@@ -18,8 +18,8 @@ public class ErsReimbursement {
 		super();
 	}
 
-	public ErsReimbursement(int reimbId, String reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
-			String reimbDescription, String reimbReceipt, int reimbAuthor, int reimbResolver, int reimbStatusId,
+	public ErsReimbursement(int reimbId, Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
+			String reimbDescription, Byte reimbReceipt, int reimbAuthor, int reimbResolver, int reimbStatusId,
 			int reimbTypeId) {
 		super();
 		ReimbId = reimbId;
@@ -42,11 +42,11 @@ public class ErsReimbursement {
 		ReimbId = reimbId;
 	}
 
-	public String getReimbAmount() {
+	public Double getReimbAmount() {
 		return ReimbAmount;
 	}
 
-	public void setReimbAmount(String reimbAmount) {
+	public void setReimbAmount(Double reimbAmount) {
 		ReimbAmount = reimbAmount;
 	}
 
@@ -74,11 +74,11 @@ public class ErsReimbursement {
 		ReimbDescription = reimbDescription;
 	}
 
-	public String getReimbReceipt() {
+	public Byte getReimbReceipt() {
 		return ReimbReceipt;
 	}
 
-	public void setReimbReceipt(String reimbReceipt) {
+	public void setReimbReceipt(Byte reimbReceipt) {
 		ReimbReceipt = reimbReceipt;
 	}
 

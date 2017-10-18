@@ -15,7 +15,7 @@
 	</servlet-mapping>
 
 	<error-page>
-		<exception-type>com.capitalone.exceptions.UrlNotMappedException</exception-type>
-		<location>/static/ERLogin.html</location>
+		<error-code>404</error-code>
+		<location>/static/ErsLogin.html</location>
 	</error-page>
 </web-app>
