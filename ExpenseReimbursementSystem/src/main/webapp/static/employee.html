@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
 
-    <title>Employee Options</title>
+<title>Employee Access Page</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="./css/employee.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./css/employee.css" rel="stylesheet">
+<link href="./css/jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <form class="form-signin">
-            <h1> Please choose one of the options</h1>
-            <p>View
-                <a href="./pasttickets.html">Past Tickets</a>
-            </p>
-            <p>Submit a
-                <a href="./reimbursementform.html">New Reimbursement Request</a>
-            </p>
-        </form>
-    </div>
-    <!-- Bootstrap core JavaScript
+	<div class="jumbotron">
+		<div class="container">
+			<h3 class="display-4">ERS Employee Options</h3>
+		</div>
+	</div>
+
+	<div class="container">
+		<h3 class="form-signin-heading">Please choose one of the
+			Reimbursement options</h3>
+		<br>
+		<form class="form-signin"
+			action="/ExpenseReimbursementSystem/viewPastTickets" method="post">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">View
+				Past Requests</button>
+		</form>
+		<form class="form-signin"
+			action="/ExpenseReimbursementSystem/newReimbursementRequest"
+			method="post">
+			<p>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Add
+					a New Request</button>
+			</p>
+		</form>
+	</div>
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>

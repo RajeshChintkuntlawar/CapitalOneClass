@@ -1,17 +1,23 @@
 body {
-  padding-top: 100px;
+  padding-top: 40px;
   padding-bottom: 40px;
-  background-color: rgba(224, 236, 243, 0.911);
+  background-color: #eee;
 }
 
 .form-signin {
-  max-width: 500px;
+  max-width: 330px;
   padding: 15px;
   margin: 0 auto;
-  line-height: 150%;
-  font-size: 16px;
 }
-
-.label-only{
-  vertical-align: top;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 }

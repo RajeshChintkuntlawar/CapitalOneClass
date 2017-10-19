@@ -19,7 +19,7 @@ public class FrontController extends DefaultServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		log.trace("full url: " + req.getRequestURI());
+		log.trace("full url at the start of the application: " + req.getRequestURI());
 		String requestUrl = req.getRequestURI().substring(req.getContextPath().length());
 		log.debug("get request made with url: " + requestUrl);
 
@@ -37,11 +37,7 @@ public class FrontController extends DefaultServlet {
 			super.doGet(req, resp);
 			return;
 		}
-
-//		if (requestUrl.startsWith("/CustomerService")) {
-//			req.getRequestDispatcher("/static/CustomerService.html").forward(req, resp);
-//		}
-		
+	
 		req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 
 	}
@@ -55,9 +51,20 @@ public class FrontController extends DefaultServlet {
 			ersUserController.processPostRequests(req, resp);
 		}
 
-//		if (requestUrl.startsWith("/static/reimbursementform")) {
-//			employeeController.ErsReimbursementService(req);
-//		}
+		//Not working
+		if (requestUrl.startsWith("/CustomerService")) {
+			log.debug("customer service");
+			resp.sendRedirect("/CustomerService.html");
+		}
+
+		if (requestUrl.startsWith("/viewPastTickets")) {
+			log.debug("viewPastTickets");
+			employeeController.viewPastRequests(req);
+		}
+		
+		if (requestUrl.startsWith("/newReimbursementRequest")) {
+			employeeController.newReimbursementRequest(req);
+		}
 		
 	}
 }

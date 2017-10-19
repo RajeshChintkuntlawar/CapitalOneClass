@@ -8,19 +8,20 @@ public class ErsReimbursement {
 	private Timestamp ReimbSubmitted;
 	private Timestamp ReimbResolved;
 	private String ReimbDescription;
-	private Byte ReimbReceipt;
-	private int ReimbAuthor;
-	private int ReimbResolver;
-	private int ReimbStatusId;
-	private int ReimbTypeId;
+	private String ReimbReceipt;
+	private String ReimbAuthor;
+	private String ReimbResolver;
+	private String ReimbStatusId;
+	private String ReimbTypeId;
 
 	public ErsReimbursement() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public ErsReimbursement(int reimbId, Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
-			String reimbDescription, Byte reimbReceipt, int reimbAuthor, int reimbResolver, int reimbStatusId,
-			int reimbTypeId) {
+			String reimbDescription, String reimbReceipt, String reimbAuthor, String reimbResolver,
+			String reimbStatusId, String reimbTypeId) {
 		super();
 		ReimbId = reimbId;
 		ReimbAmount = reimbAmount;
@@ -74,43 +75,43 @@ public class ErsReimbursement {
 		ReimbDescription = reimbDescription;
 	}
 
-	public Byte getReimbReceipt() {
+	public String getReimbReceipt() {
 		return ReimbReceipt;
 	}
 
-	public void setReimbReceipt(Byte reimbReceipt) {
+	public void setReimbReceipt(String reimbReceipt) {
 		ReimbReceipt = reimbReceipt;
 	}
 
-	public int getReimbAuthor() {
+	public String getReimbAuthor() {
 		return ReimbAuthor;
 	}
 
-	public void setReimbAuthor(int reimbAuthor) {
+	public void setReimbAuthor(String reimbAuthor) {
 		ReimbAuthor = reimbAuthor;
 	}
 
-	public int getReimbResolver() {
+	public String getReimbResolver() {
 		return ReimbResolver;
 	}
 
-	public void setReimbResolver(int reimbResolver) {
+	public void setReimbResolver(String reimbResolver) {
 		ReimbResolver = reimbResolver;
 	}
 
-	public int getReimbStatusId() {
+	public String getReimbStatusId() {
 		return ReimbStatusId;
 	}
 
-	public void setReimbStatusId(int reimbStatusId) {
+	public void setReimbStatusId(String reimbStatusId) {
 		ReimbStatusId = reimbStatusId;
 	}
 
-	public int getReimbTypeId() {
+	public String getReimbTypeId() {
 		return ReimbTypeId;
 	}
 
-	public void setReimbTypeId(int reimbTypeId) {
+	public void setReimbTypeId(String reimbTypeId) {
 		ReimbTypeId = reimbTypeId;
 	}
 
@@ -119,15 +120,15 @@ public class ErsReimbursement {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ReimbAmount == null) ? 0 : ReimbAmount.hashCode());
-		result = prime * result + ReimbAuthor;
+		result = prime * result + ((ReimbAuthor == null) ? 0 : ReimbAuthor.hashCode());
 		result = prime * result + ((ReimbDescription == null) ? 0 : ReimbDescription.hashCode());
 		result = prime * result + ReimbId;
 		result = prime * result + ((ReimbReceipt == null) ? 0 : ReimbReceipt.hashCode());
 		result = prime * result + ((ReimbResolved == null) ? 0 : ReimbResolved.hashCode());
-		result = prime * result + ReimbResolver;
-		result = prime * result + ReimbStatusId;
+		result = prime * result + ((ReimbResolver == null) ? 0 : ReimbResolver.hashCode());
+		result = prime * result + ((ReimbStatusId == null) ? 0 : ReimbStatusId.hashCode());
 		result = prime * result + ((ReimbSubmitted == null) ? 0 : ReimbSubmitted.hashCode());
-		result = prime * result + ReimbTypeId;
+		result = prime * result + ((ReimbTypeId == null) ? 0 : ReimbTypeId.hashCode());
 		return result;
 	}
 
@@ -145,7 +146,10 @@ public class ErsReimbursement {
 				return false;
 		} else if (!ReimbAmount.equals(other.ReimbAmount))
 			return false;
-		if (ReimbAuthor != other.ReimbAuthor)
+		if (ReimbAuthor == null) {
+			if (other.ReimbAuthor != null)
+				return false;
+		} else if (!ReimbAuthor.equals(other.ReimbAuthor))
 			return false;
 		if (ReimbDescription == null) {
 			if (other.ReimbDescription != null)
@@ -164,16 +168,25 @@ public class ErsReimbursement {
 				return false;
 		} else if (!ReimbResolved.equals(other.ReimbResolved))
 			return false;
-		if (ReimbResolver != other.ReimbResolver)
+		if (ReimbResolver == null) {
+			if (other.ReimbResolver != null)
+				return false;
+		} else if (!ReimbResolver.equals(other.ReimbResolver))
 			return false;
-		if (ReimbStatusId != other.ReimbStatusId)
+		if (ReimbStatusId == null) {
+			if (other.ReimbStatusId != null)
+				return false;
+		} else if (!ReimbStatusId.equals(other.ReimbStatusId))
 			return false;
 		if (ReimbSubmitted == null) {
 			if (other.ReimbSubmitted != null)
 				return false;
 		} else if (!ReimbSubmitted.equals(other.ReimbSubmitted))
 			return false;
-		if (ReimbTypeId != other.ReimbTypeId)
+		if (ReimbTypeId == null) {
+			if (other.ReimbTypeId != null)
+				return false;
+		} else if (!ReimbTypeId.equals(other.ReimbTypeId))
 			return false;
 		return true;
 	}
