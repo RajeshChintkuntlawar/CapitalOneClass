@@ -3,22 +3,26 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { UIRouterModule } from '@uirouter/angular';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 
+
+// component imports
 import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
-
+import {AccountComponent} from './account/account.component';
+import {UserAccountsComponent} from './user-accounts/user-accounts.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     NgbModule.forRoot(),
-    FormsModule
+    NgbModule,
   ],
   declarations: [
     AppComponent,
     NavComponent,
+    AccountComponent,
+    UserAccountsComponent,
    ],
   providers: [
 

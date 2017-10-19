@@ -1,3 +1,0 @@
-Joe,Smith,35,Virginia
-Daniel,McCobb,67,Lousiana
-B,Arnold Palmer,0,New Mexico

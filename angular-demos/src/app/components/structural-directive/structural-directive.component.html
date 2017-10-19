@@ -1,0 +1,12 @@
+<!-- 
+
+-->
+
+<button class="btn btn-primary" (click)="toggleCompleted()">Toggle Completed</button>
+
+<div *ngFor="let flashcard of (flashcards | completed:filterCompleted)">
+  <app-flashcard [flashcard]="flashcard"></app-flashcard>
+</div>
+
+ 
+

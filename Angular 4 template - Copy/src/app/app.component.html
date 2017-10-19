@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<!-- 
+<button class="btn btn-primary" (click)="goToAccounts()">show</button>
+<button class="btn btn-danger" (click)="hide()">hide</button>
+
+-->
+<app-user-accounts></app-user-accounts>
+
+<p [class]="paragraphClass" (click)="toggleColor()">
+  hello world!
+</p>
+
+<app-account [account]="{ owner:'blake', balance:23423 }"></app-account>

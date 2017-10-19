@@ -1,4 +1,0 @@
-Hulk:Hogan:50:Virginia
-Mickey:Mouse:35:Arizona
-Wonder:Woman:18:Montana
-Roger:Rabbit:22:California
