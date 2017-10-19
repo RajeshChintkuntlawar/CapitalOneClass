@@ -55,16 +55,16 @@ public class ErsReimbursement {
 		return ReimbSubmitted;
 	}
 
-	public void setReimbSubmitted(Timestamp reimbSubmitted) {
-		ReimbSubmitted = reimbSubmitted;
+	public void setReimbSubmitted(Timestamp timestamp) {
+		ReimbSubmitted = timestamp;
 	}
 
 	public Timestamp getReimbResolved() {
 		return ReimbResolved;
 	}
 
-	public void setReimbResolved(Timestamp reimbResolved) {
-		ReimbResolved = reimbResolved;
+	public void setReimbResolved(Timestamp timestamp) {
+		ReimbResolved = timestamp;
 	}
 
 	public String getReimbDescription() {

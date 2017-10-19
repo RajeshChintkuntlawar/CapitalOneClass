@@ -59,12 +59,21 @@ public class FrontController extends DefaultServlet {
 
 		if (requestUrl.startsWith("/viewPastTickets")) {
 			log.debug("viewPastTickets");
+			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewPastTickets.html");
 			employeeController.viewPastRequests(req);
 		}
 		
 		if (requestUrl.startsWith("/newReimbursementRequest")) {
+			log.debug("newReimbursementRequest");
+			resp.sendRedirect("/ExpenseReimbursementSystem/static/newReimbursementRequest.html");
 			employeeController.newReimbursementRequest(req);
 		}
 		
+		if (requestUrl.startsWith("/viewAllRequests")) {
+			log.debug("viewAllRequests");
+			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewAllRequests.html");
+			employeeController.viewPastRequests(req);
+		}
+	
 	}
 }
