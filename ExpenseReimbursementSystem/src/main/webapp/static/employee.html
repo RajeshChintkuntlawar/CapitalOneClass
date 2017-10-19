@@ -29,20 +29,16 @@
 		<h3 class="form-signin-heading">Please choose one of the
 			Reimbursement options</h3>
 		<br>
-		<form class="form-signin"
-			action="/ExpenseReimbursementSystem/viewPastTickets" method="post">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">View
-				Past Requests</button>
-		</form>
-		<form class="form-signin"
-			action="/ExpenseReimbursementSystem/newReimbursementRequest"
-			method="post">
-			<p>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Add
-					a New Request</button>
-			</p>
-		</form>
+		<button class="btn btn-lg btn-primary btn-block"
+			onClick="goToViewPastTickets()">View Past Reimbursement
+			Requests</button>
+		<button class="btn btn-lg btn-primary btn-block"
+			onClick="goToAddNewReimbursement()">Add a New Reimbursement
+			Request</button>
 	</div>
+
+	<script src="./employee.js"></script>
+
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

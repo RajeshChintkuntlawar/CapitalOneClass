@@ -36,9 +36,12 @@ public class FrontController extends DefaultServlet {
 //			}
 			super.doGet(req, resp);
 			return;
+		} else if (requestUrl.startsWith("/viewPastTickets")) {
+			log.debug("viewPastTickets");
+			employeeController.viewPastRequests(req, resp);
+		} else {
+			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 		}
-	
-		req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 
 	}
 
@@ -51,28 +54,19 @@ public class FrontController extends DefaultServlet {
 			ersUserController.processPostRequests(req, resp);
 		}
 
-		//Not working
-		if (requestUrl.startsWith("/CustomerService")) {
-			log.debug("customer service");
-			resp.sendRedirect("/CustomerService.html");
-		}
-
 		if (requestUrl.startsWith("/viewPastTickets")) {
 			log.debug("viewPastTickets");
-			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewPastTickets.html");
-			employeeController.viewPastRequests(req);
+			employeeController.viewPastRequests(req, resp);
 		}
 		
 		if (requestUrl.startsWith("/newReimbursementRequest")) {
 			log.debug("newReimbursementRequest");
-			resp.sendRedirect("/ExpenseReimbursementSystem/static/newReimbursementRequest.html");
 			employeeController.newReimbursementRequest(req);
 		}
 		
 		if (requestUrl.startsWith("/viewAllRequests")) {
 			log.debug("viewAllRequests");
-			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewAllRequests.html");
-			employeeController.viewPastRequests(req);
+			employeeController.viewPastRequests(req, resp);
 		}
 	
 	}

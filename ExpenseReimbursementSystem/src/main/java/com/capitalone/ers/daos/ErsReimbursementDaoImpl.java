@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -13,9 +15,11 @@ import com.capitalone.ers.utils.DatabaseConnectionUtility;
 public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 	private Logger log = Logger.getRootLogger();
 	private DatabaseConnectionUtility conUtil = new DatabaseConnectionUtility();
-
+	
+	
 	@Override
-	public ErsReimbursement findByAuthor(int authoerId) {
+	public List<ErsReimbursement> findByAuthor(int authoerId) {
+		List<ErsReimbursement> ersReimbursements = new ArrayList<ErsReimbursement>();
 		try (Connection conn = conUtil.getConnection()) {
 			log.debug("Retrieving ERS_REIMBURSEMENT Data");
 			// PreparedStatement stmt = conn.prepareStatement("SELECT reimb_id,
@@ -33,19 +37,17 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			stmt.setInt(1, authoerId);
 			log.debug("stmt " + stmt);
 			ResultSet rs = stmt.executeQuery();
-			ErsReimbursement ersReimbursement = null;
-			if (rs.next()) {
-				ersReimbursement = new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
+			while (rs.next()) {
+				ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 						rs.getString("reimb_description"), rs.getString("reimb_receipt"),
 						rs.getString("ers_first_name"), rs.getString("reimb_resolver"), rs.getString("reimb_status"),
-						rs.getString("reimb_type"));
+						rs.getString("reimb_type")));
 
 				log.debug("Data Retrieval from ERS_REIMBURSEMENT is successful for " + authoerId);
-			} else {
-				log.debug("Data Retrieval from ERS_REIMBURSEMENT failed for " + authoerId);
-			}
-			return ersReimbursement;
+			} 
+			System.out.println("size" + ersReimbursements.size());
+			return ersReimbursements;
 
 		} catch (SQLException e) {
 			e.printStackTrace();

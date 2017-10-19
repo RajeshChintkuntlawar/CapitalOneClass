@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<html>
+<head>
+<title>Employee Past Tickets</title>
+<!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="./css/pasttickets.css" rel="stylesheet">
+</head>
 
-    <title>Employee Past Tickets</title>
+<body>
+	<div class="container">
+		<form class="form-signin"
+			action="/ExpenseReimbursementSystem/viewPastTickets" method="post">
+			<h2>Following Tickets are submitted by you in the Past:</h2>
+		</form>
+		<br> <br>
+		<table class="reimbursement-table">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Amount</th>
+					<th>Description</th>
+					<th>Submitted On</th>
+					<th>Status</th>
+					<th>Resolved On</th>
+				</tr>
+			</thead>
+			<tbody class="reimbursement-body">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+			</tbody>
+		</table>
 
-    <!-- Custom styles for this template -->
-    <link href="./css/pasttickets.css" rel="stylesheet">
-  </head>
-
-  <body>
-    <div class="container">
-    <form class="form-signin" action="/ExpenseReimbursementSystem/viewPastTickets" method="post">
-      <h2>Following is the list of Tickets submitted by all employees:</h2>
-        
-        	<script type="text/javascript" src="./viewPastTickets.js"></script>
-    </form>
-  </div>
-  <!-- Bootstrap core JavaScript
+		<br> <br> <a href="./newReimbursementRequest.html">Submit
+			a New Reimbursement Request</a> <br> <br>
+		<script type="text/javascript" src="./viewpasttickets.js"></script>
+	</div>
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>

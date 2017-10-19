@@ -26,26 +26,18 @@
 	</div>
 
 	<div class="container">
-		<h3 class="form-signin-heading">Please choose one of the
-			Managing options</h3>
+		<h3 class="form-signin-heading">Please choose one of the Managing
+			options</h3>
 		<br>
-		<form class="form-signin"
-			action="/ExpenseReimbursementSystem/viewAllRequests" method="get">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">View
-				all Reimbursements</button>
-		</form>
-		<form class="form-signin"
-			action="/ExpenseReimbursementSystem/filterRequests"
-			method="get">
-			<p>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Filter Requests</button>
-			</p>
-		</form>
+		<button class="btn btn-lg btn-primary btn-block"
+			onClick="goToViewAllPage()">View all Reimbursements</button>
 	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+	<script src="./manager.js"></script>
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 

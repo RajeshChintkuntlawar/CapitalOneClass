@@ -1,8 +1,10 @@
 package com.capitalone.ers.services;
 
+import java.io.IOException;
 import java.security.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -17,7 +19,7 @@ public class ErsReimbursementService {
 	ErsReimbursementDaoImpl ersReimbursementDaoImpl = new ErsReimbursementDaoImpl();
 	ErsReimbursement ersReimbursement = new ErsReimbursement();
 
-	public void getPastRequestDetails(HttpServletRequest req) throws JsonProcessingException {
+	public void getPastRequestDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		log.debug("getPastRequestDetails");
 
 		// jackson code for converting to json
@@ -28,6 +30,7 @@ public class ErsReimbursementService {
 
 			// write to response body
 			log.debug(ersReimbursementJson);
+			resp.getWriter().println(ersReimbursementJson);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

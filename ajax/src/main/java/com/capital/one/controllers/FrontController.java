@@ -39,23 +39,22 @@ public class FrontController extends DefaultServlet {
 		if (requestUrl.equals("/flashcards")) {
 			ObjectMapper om = new ObjectMapper();
 			String json = om.writeValueAsString(flashcards);
-			
+
 			response.getWriter().println(json);
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		String requestUrl = request.getRequestURI().substring(request.getContextPath().length());
 
-		if(requestUrl.equals("/flashcards")) {
+		if (requestUrl.equals("/flashcards")) {
 			String json = request.getReader().readLine();
 			ObjectMapper om = new ObjectMapper();
-			
-			
+
 			FlashCard fc = om.readValue(json, FlashCard.class);
-			
+
 			flashcards.add(fc);
 			System.out.println(flashcards);
 		}
