@@ -1,0 +1,48 @@
+<app-nav></app-nav>
+
+<!-- using a table -->
+<table>
+  <thead>
+    <tr>
+      <th>
+        Candy Name
+      </th>
+      <th>
+        Rating
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let eachBar of candyBars">
+      <td>{{eachBar.name | uppercase }}</td>
+      <td>{{eachBar.rating}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<!-- using the component -->
+<!-- <div *ngFor="let eachBar of candyBars"> -->
+  <!-- this content will be created for each
+      bar in the array -->
+    <!-- <app-candy-bar [candy]="eachBar"></app-candy-bar>
+
+</div> -->
+<form>
+  <label>name:</label>
+  <input name="name" type="text" [(ngModel)]="newBar.name">
+  <label>rating:</label>
+  <input name="rating" type="number" [(ngModel)]="newBar.rating">
+</form>
+<button class="btn btn-primary" (click)="addCandy()"> Add </button>
+
+<p>
+with pipe: 
+{{ currentDate | date:'medium'}}
+</p>
+<p>
+without pipe: 
+{{ currentDate }}
+</p>
+
