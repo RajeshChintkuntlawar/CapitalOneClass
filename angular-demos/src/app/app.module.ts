@@ -17,6 +17,13 @@ import {FlashcardComponent} from './components/flashcard/flashcard.component';
 import {PipesComponent} from './components/pipes/pipes.component';
 import {StructuralDirectiveComponent} from './components/structural-directive/structural-directive.component';
 import {TwoWayBindingComponent} from './components/two-way-binding/two-way-binding.component';
+import {ParentComponent} from './components/parent/parent.component';
+import {Child1Component} from './components/child1/child1.component';
+import {Child2Component} from './components/child2/child2.component';
+import {HttpCachedComponent} from './components/http-cached/http-cached.component';
+
+// services
+import {FlashcardService} from './services/flashcard.service';
 
 // pipes
 import {CompletedPipe} from './pipes/completed.pipe';
@@ -43,12 +50,17 @@ import {appRoutes} from './routes';
     PipesComponent,
     StructuralDirectiveComponent,
     TwoWayBindingComponent,
+    ParentComponent,
+    Child1Component,
+    Child2Component,
+    HttpCachedComponent,
 
     // pipes
     CompletedPipe,
    ],
   providers: [
-
+     // services
+     FlashcardService,
    ],
   bootstrap: [AppComponent]
 })

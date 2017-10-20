@@ -30,6 +30,9 @@ public class FrontController extends DefaultServlet {
 			throws IOException, ServletException {
 		String requestUrl = request.getRequestURI().substring(request.getContextPath().length());
 
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		response.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
+
 		// route static content normally
 		if (requestUrl.startsWith("/static/")) {
 			super.doGet(request, response);
