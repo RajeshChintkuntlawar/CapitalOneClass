@@ -6,4 +6,6 @@ import com.capitalone.ers.beans.ErsReimbursement;
 
 public interface ErsReimbursementDao {
 	public List<ErsReimbursement> findByAuthor(int id);
+
+	public List<ErsReimbursement> findAllRequests();
 }

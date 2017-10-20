@@ -18,14 +18,10 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 	
 	
 	@Override
-	public List<ErsReimbursement> findByAuthor(int authoerId) {
+	public List<ErsReimbursement> findByAuthor(int authorId) {
 		List<ErsReimbursement> ersReimbursements = new ArrayList<ErsReimbursement>();
 		try (Connection conn = conUtil.getConnection()) {
-			log.debug("Retrieving ERS_REIMBURSEMENT Data");
-			// PreparedStatement stmt = conn.prepareStatement("SELECT reimb_id,
-			// reimb_amount, reimb_submitted, reimb_resolved, reimb_description,
-			// reimb_receipt, reimb_author, reimb_resolver, reimb_status_id,
-			// reimb_type_id FROM ers_reimbursement WHERE REIMB_AUTHOR = ?");
+			log.debug("Retrieving ERS_REIMBURSEMENT Data for " + authorId);
 
 			PreparedStatement stmt = conn.prepareStatement(
 					"SELECT reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, users.ers_first_name, reimb_resolver, ersstatus.reimb_status, erstype.reimb_type"
@@ -34,8 +30,8 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 							+ " And ersreimb.reimb_type_id = erstype.reimb_type_id"
 							+ " And ersreimb.reimb_author = users.ers_users_id" + " And REIMB_AUTHOR = ?");
 
-			stmt.setInt(1, authoerId);
-			log.debug("stmt " + stmt);
+			stmt.setInt(1, authorId);
+
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
@@ -43,10 +39,8 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 						rs.getString("reimb_description"), rs.getString("reimb_receipt"),
 						rs.getString("ers_first_name"), rs.getString("reimb_resolver"), rs.getString("reimb_status"),
 						rs.getString("reimb_type")));
-
-				log.debug("Data Retrieval from ERS_REIMBURSEMENT is successful for " + authoerId);
 			} 
-			System.out.println("size" + ersReimbursements.size());
+
 			return ersReimbursements;
 
 		} catch (SQLException e) {
@@ -55,6 +49,36 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 		return null;
 	}
 
+	@Override
+	public List<ErsReimbursement> findAllRequests() {
+		List<ErsReimbursement> ersReimbursements = new ArrayList<ErsReimbursement>();
+		try (Connection conn = conUtil.getConnection()) {
+			log.debug("Retrieving ERS_REIMBURSEMENT Data for All Users");
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"SELECT reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, users.ers_first_name, reimb_resolver, ersstatus.reimb_status, erstype.reimb_type"
+							+ " FROM ers_reimbursement as ersreimb, ers_reimbursement_status as ersstatus, ers_reimbursement_type as erstype, ers_users as users"
+							+ " Where ersreimb.reimb_status_id = ersstatus.reimb_status_id"
+							+ " And ersreimb.reimb_type_id = erstype.reimb_type_id"
+							+ " And ersreimb.reimb_author = users.ers_users_id");
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
+						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+						rs.getString("reimb_description"), rs.getString("reimb_receipt"),
+						rs.getString("ers_first_name"), rs.getString("reimb_resolver"), rs.getString("reimb_status"),
+						rs.getString("reimb_type")));
+			} 
+
+			return ersReimbursements;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void addReimbursement(ErsReimbursement ersReimbursement) {
 		try (Connection conn = conUtil.getConnection()) {
 			log.debug("Inserting new Reimbursement data into ERS_REIMBURSEMENT");

@@ -16,11 +16,9 @@ public class EmployeeController {
 	ErsReimbursementService ersReimbursementService = new ErsReimbursementService();
 
 	public void viewPastRequests(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		log.debug("In viewPastRequests");
 		try {
 			ersReimbursementService.getPastRequestDetails(req, resp);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -30,5 +28,4 @@ public class EmployeeController {
 		ersReimbursementService.addNewReimbursementDetails(req);
 
 	}
-
 }

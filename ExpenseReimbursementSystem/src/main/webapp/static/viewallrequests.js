@@ -9,10 +9,10 @@ xhr.onload = function() {
 		<td>${reimbursement.reimbTypeId}</td>
 				<td>$${reimbursement.reimbAmount}</td>
 				<td>${reimbursement.reimbDescription}</td>
-				<td>${new Date(reimbursement.reimbSubmitted).toString().substring(4,15)}</td>
+				<td>${reimbursement.reimbSubmitted}</td>
+				<td>${reimbursement.reimbAuthor}</td>
 				<td>${reimbursement.reimbStatusId}</td>
-				<td>${reimbursement.reimbResolver}</td>
-	            <td>${new Date(reimbursement.reimbResolved).toString().substring(4,15)}</td>
+	            <td><button type="button" onclick="location.href='./approvedeny.html';"">Approve</button></td>
 			</tr>
 		`;
 	})
@@ -26,7 +26,7 @@ xhr.onerror = function() {
 };
 
 // specify url and type
-xhr.open('GET', '../viewPastTickets');
+xhr.open('GET', '../viewAllRequests');
 
 // send the request
 xhr.send();

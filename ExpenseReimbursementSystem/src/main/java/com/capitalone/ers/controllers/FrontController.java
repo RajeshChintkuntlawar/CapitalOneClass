@@ -52,21 +52,16 @@ public class FrontController extends DefaultServlet {
 
 		if (requestUrl.startsWith("/ErsLogin")) {
 			ersUserController.processPostRequests(req, resp);
-		}
-
-		if (requestUrl.startsWith("/viewPastTickets")) {
-			log.debug("viewPastTickets");
+		} else if (requestUrl.startsWith("/viewPastTickets")) {
 			employeeController.viewPastRequests(req, resp);
-		}
-		
-		if (requestUrl.startsWith("/newReimbursementRequest")) {
+		} else if (requestUrl.startsWith("/newReimbursementRequest")) {
 			log.debug("newReimbursementRequest");
 			employeeController.newReimbursementRequest(req);
-		}
-		
-		if (requestUrl.startsWith("/viewAllRequests")) {
+		}else if (requestUrl.startsWith("/viewAllRequests")) {
 			log.debug("viewAllRequests");
-			employeeController.viewPastRequests(req, resp);
+			managerController.viewAllRequests(req, resp);
+		} else {
+			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 		}
 	
 	}

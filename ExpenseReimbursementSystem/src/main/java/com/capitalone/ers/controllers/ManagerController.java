@@ -1,37 +1,27 @@
 package com.capitalone.ers.controllers;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.capitalone.ers.services.ErsReimbursementService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 public class ManagerController {
 
 	private Logger log = Logger.getRootLogger();
+	ErsReimbursementService ersReimbursementService = new ErsReimbursementService();
 
-	public void viewAllReimbursements(HttpServletRequest req, HttpServletResponse resp) {
-		String requestUrl = req.getRequestURI().substring(req.getContextPath().length());
-
-		switch (requestUrl) {
-		case "/manager":
-			log.trace("User Type Manager requesting to view all reimbursements");
-			viewReimbursements(req, resp);
-			break;
-
-		default:
-			break;
+	public void viewAllRequests(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		try {
+			log.debug("Retrieving all User Tickets");
+			ersReimbursementService.getAllsRequestsDetails(req, resp);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
 		}
-
-	}
-
-	private void viewReimbursements(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void processManagerRequests(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

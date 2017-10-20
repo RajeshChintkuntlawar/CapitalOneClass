@@ -1,7 +1,6 @@
 package com.capitalone.ers.services;
 
 import java.io.IOException;
-import java.security.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,12 +19,11 @@ public class ErsReimbursementService {
 	ErsReimbursement ersReimbursement = new ErsReimbursement();
 
 	public void getPastRequestDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		log.debug("getPastRequestDetails");
-
 		// jackson code for converting to json
 		ObjectMapper om = new ObjectMapper();
 		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
 		try {
+			//TODO pass req.??? instead of 1 to findByAuthor
 			String ersReimbursementJson = ow.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(1));
 
 			// write to response body
@@ -65,6 +63,21 @@ public class ErsReimbursementService {
 //			break;
 //		}
 //		ersReimbursementDaoImpl.addReimbursement(ersReimbursement);
+	}
+
+	public void getAllsRequestsDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		ObjectMapper om = new ObjectMapper();
+		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
+		try {
+			String ersReimbursementAllRequestsJson = ow.writeValueAsString(ersReimbursementDaoImpl.findAllRequests());
+
+			// write to response body
+			log.debug(ersReimbursementAllRequestsJson);
+			resp.getWriter().println(ersReimbursementAllRequestsJson);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
