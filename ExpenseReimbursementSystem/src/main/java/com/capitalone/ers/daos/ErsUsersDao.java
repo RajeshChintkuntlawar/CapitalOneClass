@@ -1,5 +1,7 @@
 package com.capitalone.ers.daos;
 
+import com.capitalone.ers.beans.ErsUsers;
+
 public interface ErsUsersDao {
-	public String findUserRole(String username, String password);
+	public ErsUsers findUserId(String username);
 }

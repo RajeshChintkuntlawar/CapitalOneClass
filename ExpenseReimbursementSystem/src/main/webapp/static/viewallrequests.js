@@ -1,10 +1,13 @@
+function approve( id) {
+	console.log(id);
+}
 let xhr = new XMLHttpRequest();
 
 // on success callback function
 xhr.onload = function() {
 	let reimbursements = JSON.parse(this.responseText);
 	reimbursements.forEach((reimbursement) => {
-		document.getElementsByClassName('reimbursement-body')[0].innerHTML += `
+		document.getElementsByClassName('allrequests-body')[0].innerHTML += `
 			<tr id="${reimbursement.reimbId}">
 		<td>${reimbursement.reimbTypeId}</td>
 				<td>$${reimbursement.reimbAmount}</td>
@@ -12,7 +15,9 @@ xhr.onload = function() {
 				<td>${reimbursement.reimbSubmitted}</td>
 				<td>${reimbursement.reimbAuthor}</td>
 				<td>${reimbursement.reimbStatusId}</td>
-	            <td><button type="button" onclick="location.href='./approvedeny.html';"">Approve</button></td>
+	            <td><button type="button" onclick="approve(${reimbursement.reimbId})">Approve</button></td>
+	            <td><button type="button" onclick="approve(${reimbursement.reimbId})">Deny</button></td>
+//	            <td><button type="button" onclick="location.href='./approvedeny.html';"">Approve/Deny</button></td>
 			</tr>
 		`;
 	})

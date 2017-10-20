@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.capitalone.ers.beans.ErsReimbursement;
+import com.capitalone.ers.beans.ErsUsers;
 import com.capitalone.ers.daos.ErsReimbursementDaoImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,12 +20,15 @@ public class ErsReimbursementService {
 	ErsReimbursement ersReimbursement = new ErsReimbursement();
 
 	public void getPastRequestDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		// Retrieve the session user id
+		ErsUsers currentUser = (ErsUsers) req.getSession().getAttribute("currentUser");
+		
 		// jackson code for converting to json
 		ObjectMapper om = new ObjectMapper();
 		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
 		try {
-			//TODO pass req.??? instead of 1 to findByAuthor
-			String ersReimbursementJson = ow.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(1));
+			String ersReimbursementJson = ow.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(currentUser.getErsUsersId()));
 
 			// write to response body
 			log.debug(ersReimbursementJson);

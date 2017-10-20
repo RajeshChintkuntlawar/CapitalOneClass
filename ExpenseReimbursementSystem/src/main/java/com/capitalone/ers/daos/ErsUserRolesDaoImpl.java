@@ -15,25 +15,33 @@ public class ErsUserRolesDaoImpl implements ErsUserRolesDao {
 	private DatabaseConnectionUtility conUtil = new DatabaseConnectionUtility();
 
 	@Override
-	public ErsUserRoles findById(int roleId) {
+	public ErsUserRoles findUserRole(String username, String password) {
 		try (Connection conn = conUtil.getConnection()) {
-			log.debug("Data retrieval from ERS_USER_ROLES");
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ERS_USER_ROLES WHERE ERS_USER_ROLE_ID = ?");
-			stmt.setInt(1, roleId);
+			log.trace("Retrieving User Role for " + username);
+
+			PreparedStatement stmt = conn.prepareStatement("select userroles.ers_user_role_id, userroles.user_role"
+					+ " from expensereimbursementsystem.ers_users as users, expensereimbursementsystem.ers_user_roles as userroles"
+					+ " where users.user_role_id = userroles.ers_user_role_id "
+					+ " And ers_user_name = ? and ers_password = ?");
+
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+
 			ResultSet rs = stmt.executeQuery();
 			ErsUserRoles ersUserRoles = null;
 			if (rs.next()) {
-				ersUserRoles = new ErsUserRoles(rs.getInt("ERS_USER_ROLE_ID"), rs.getString("USER_ROLE"));
-				log.debug("Data Retrieval from ERS_USER_ROLES is successful for " + roleId);
+				log.debug(username + "'s role is " + rs.getString("user_role"));
+				ersUserRoles = new ErsUserRoles(rs.getInt("ers_user_role_id"), rs.getString("user_role"));
+				return ersUserRoles;
 			} else {
-				log.debug("Data Retrieval from ERS_USER_ROLES failed for " + roleId);
+				log.debug(username + " is an unknown User");
+				return null;
 			}
-			return ersUserRoles;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 }

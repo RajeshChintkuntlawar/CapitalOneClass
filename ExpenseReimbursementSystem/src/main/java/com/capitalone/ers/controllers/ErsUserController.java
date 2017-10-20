@@ -19,7 +19,10 @@ public class ErsUserController {
 
 		switch (requestUrl) {
 		case "/ErsLogin":
-			retrieveUserRole(req, resp);
+			log.trace("retrieving user id");
+			ersUsers.retrieveUserId(req, resp);
+			log.trace("retrieving user role");
+			ersUsers.login(req, resp);
 			break;
 
 		default:
@@ -27,18 +30,4 @@ public class ErsUserController {
 		}
 	}
 
-	private void retrieveUserRole(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String userRole = ersUsers.login(req);
-
-		if (userRole != null) {
-			if (userRole.equals("EMPLOYEE")) {
-				resp.sendRedirect("/ExpenseReimbursementSystem/static/employee.html");
-			} else {
-				resp.sendRedirect("/ExpenseReimbursementSystem/static/manager.html");
-			}
-		} else {
-			log.debug("Failed to retrieve the User Role.  Redirecting to Login Page.");
-			resp.sendRedirect("/ExpenseReimbursementSystem/static/ErsLogin.html");
-		}
-	}
 }

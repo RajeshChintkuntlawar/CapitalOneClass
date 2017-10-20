@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.capitalone.ers.beans.ErsUsers;
 import com.capitalone.ers.utils.DatabaseConnectionUtility;
 
 public class ErsUsersDaoImpl implements ErsUsersDao {
@@ -14,25 +15,27 @@ public class ErsUsersDaoImpl implements ErsUsersDao {
 	private DatabaseConnectionUtility conUtil = new DatabaseConnectionUtility();
 
 	@Override
-	public String findUserRole(String username, String password) {
+	public ErsUsers findUserId(String username) {
 		try (Connection conn = conUtil.getConnection()) {
-			log.trace("Retrieving User Role for " + username);
+			log.trace("Retrieving User Id for " + username);
+			ErsUsers ersUsers = null;
 
-			PreparedStatement stmt = conn.prepareStatement("select user_role "
-					+ " from expensereimbursementsystem.ers_users as users, expensereimbursementsystem.ers_user_roles as userroles"
-					+ " where users.user_role_id = userroles.ers_user_role_id "
-					+ " And ers_user_name = ? and ers_password = ?");
+			PreparedStatement stmt = conn.prepareStatement(
+					"SELECT ers_users_id, ers_user_name, ers_password, ers_first_name, ers_last_name, user_email, user_role_id"
+							+ " FROM ers_users Where ers_user_name = ?");
 
 			stmt.setString(1, username);
-			stmt.setString(2, password);
-
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				log.debug(username + "'s role is " + rs.getString("user_role"));
-				return rs.getString("user_role");
+
+				ersUsers = new ErsUsers(rs.getInt("ers_users_id"), rs.getString("ers_user_name"),
+						rs.getString("ers_password"), rs.getString("ers_first_name"), rs.getString("ers_last_name"),
+						rs.getString("user_email"), rs.getInt("user_role_id"));
+
+				return ersUsers;
 			} else {
-				log.debug(username + " is an unknown User");
+				log.debug(username + " is an unknown User. ERS doesn't have any details about " + username);
 				return null;
 			}
 

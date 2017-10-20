@@ -39,10 +39,12 @@ public class FrontController extends DefaultServlet {
 		} else if (requestUrl.startsWith("/viewPastTickets")) {
 			log.debug("viewPastTickets");
 			employeeController.viewPastRequests(req, resp);
+		}else if (requestUrl.startsWith("/viewAllRequests")) {
+			log.debug("viewAllRequests");
+			managerController.viewAllRequests(req, resp);
 		} else {
 			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 		}
-
 	}
 
 	@Override
@@ -57,9 +59,6 @@ public class FrontController extends DefaultServlet {
 		} else if (requestUrl.startsWith("/newReimbursementRequest")) {
 			log.debug("newReimbursementRequest");
 			employeeController.newReimbursementRequest(req);
-		}else if (requestUrl.startsWith("/viewAllRequests")) {
-			log.debug("viewAllRequests");
-			managerController.viewAllRequests(req, resp);
 		} else {
 			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 		}
