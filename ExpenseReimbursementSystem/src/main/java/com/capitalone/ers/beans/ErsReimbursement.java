@@ -35,6 +35,13 @@ public class ErsReimbursement {
 		ReimbTypeId = reimbTypeId;
 	}
 
+	public ErsReimbursement(Double reimbAmount, String reimbDescription, String reimbTypeId) {
+		super();
+		ReimbAmount = reimbAmount;
+		ReimbDescription = reimbDescription;
+		ReimbTypeId = reimbTypeId;
+	}
+
 	public int getReimbId() {
 		return ReimbId;
 	}

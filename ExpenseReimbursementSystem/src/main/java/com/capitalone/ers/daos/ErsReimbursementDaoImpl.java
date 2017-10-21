@@ -10,13 +10,15 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.capitalone.ers.beans.ErsReimbursement;
+import com.capitalone.ers.beans.ErsUsers;
 import com.capitalone.ers.utils.DatabaseConnectionUtility;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 	private Logger log = Logger.getRootLogger();
 	private DatabaseConnectionUtility conUtil = new DatabaseConnectionUtility();
-	
-	
+
 	@Override
 	public List<ErsReimbursement> findByAuthor(int authorId) {
 		List<ErsReimbursement> ersReimbursements = new ArrayList<ErsReimbursement>();
@@ -34,12 +36,29 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
-						rs.getString("reimb_description"), rs.getString("reimb_receipt"),
-						rs.getString("ers_first_name"), rs.getString("reimb_resolver"), rs.getString("reimb_status"),
-						rs.getString("reimb_type")));
-			} 
+
+				if (rs.getString("reimb_resolver") != null) {
+					log.debug("retrieving user name for " + rs.getString("reimb_resolver"));
+					PreparedStatement stmtNew = conn
+							.prepareStatement("SELECT ers_first_name FROM ers_users Where ers_users_id = "
+									+ rs.getString("reimb_resolver"));
+					ResultSet rsNew = stmtNew.executeQuery();
+					if (rsNew.next()) {
+						log.debug(rsNew.getString("ers_first_name"));
+					}
+					ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
+							rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+							rs.getString("reimb_description"), rs.getString("reimb_receipt"),
+							rs.getString("ers_first_name"), rsNew.getString("ers_first_name"),
+							rs.getString("reimb_status"), rs.getString("reimb_type")));
+				} else {
+					ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
+							rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+							rs.getString("reimb_description"), rs.getString("reimb_receipt"),
+							rs.getString("ers_first_name"), " ", rs.getString("reimb_status"),
+							rs.getString("reimb_type")));
+				}
+			}
 
 			return ersReimbursements;
 
@@ -69,7 +88,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 						rs.getString("reimb_description"), rs.getString("reimb_receipt"),
 						rs.getString("ers_first_name"), rs.getString("reimb_resolver"), rs.getString("reimb_status"),
 						rs.getString("reimb_type")));
-			} 
+			}
 
 			return ersReimbursements;
 
@@ -78,14 +97,21 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 		}
 		return null;
 	}
-	
+
 	public void addReimbursement(ErsReimbursement ersReimbursement) {
 		try (Connection conn = conUtil.getConnection()) {
-			log.debug("Inserting new Reimbursement data into ERS_REIMBURSEMENT");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO ers_reimbursement("
-					+ "reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id)"
-					+ "VALUES (0, ersReimbursement.getReimbAmount(), ersReimbursement.getReimbSubmitted(), ersReimbursement.getReimbResolved(), ersReimbursement.getReimbDescription(), ersReimbursement.getReimbReceipt(), ersReimbursement.getReimbAuthor(), ersReimbursement.getReimbResolver(), ersReimbursement.getReimbStatusId(), ersReimbursement.getReimbTypeId());");
+			
+			log.debug("Processing new Reimbursement data insert into ERS_REIMBURSEMENT");
+			log.debug("Schema Connected: " + conn.getSchema());
+			log.debug("Data Received into method: " + ersReimbursement.toString());
+			
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO expensereimbursementsystem.ers_reimbursement(reimb_amount, reimb_description, reimb_author, reimb_type_id)"
+					+ "VALUES (ersReimbursement.getReimbAmount(), ersReimbursement.getReimbDescription(), ersReimbursement.getReimbAuthor(), ersReimbursement.getReimbTypeId());");
+			
+			log.debug("Insert Statement Prepared: " + stmt);
+			
 			ResultSet rs = stmt.executeQuery();
+			
 			if (rs.rowInserted()) {
 				log.debug("Data Retrieval from ERS_REIMBURSEMENT is successful for " + ersReimbursement.toString());
 			} else {

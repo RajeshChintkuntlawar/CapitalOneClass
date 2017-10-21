@@ -1,6 +1,3 @@
-function approve( id) {
-	console.log(id);
-}
 let xhr = new XMLHttpRequest();
 
 // on success callback function
@@ -15,15 +12,22 @@ xhr.onload = function() {
 				<td>${reimbursement.reimbSubmitted}</td>
 				<td>${reimbursement.reimbAuthor}</td>
 				<td>${reimbursement.reimbStatusId}</td>
-	            <td><button type="button" onclick="approve(${reimbursement.reimbId})">Approve</button></td>
-	            <td><button type="button" onclick="approve(${reimbursement.reimbId})">Deny</button></td>
-//	            <td><button type="button" onclick="location.href='./approvedeny.html';"">Approve/Deny</button></td>
+	            <td><button type="button" name="approve" onclick="approve(${reimbursement.reimbId})">Approve</button></td>
+	            <td><button type="button" onclick="deny(${reimbursement.reimbId})">Deny</button></td>
 			</tr>
 		`;
 	})
 	
 	console.log(this.responseText) 
 };
+
+function approve(id) {
+	console.log(id);
+}
+
+function deny(id) {
+	console.log(id);
+}
 
 // on fail callback function
 xhr.onerror = function() { 

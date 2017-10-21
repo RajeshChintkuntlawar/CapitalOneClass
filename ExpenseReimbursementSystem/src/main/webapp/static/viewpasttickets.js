@@ -3,6 +3,7 @@ let xhr = new XMLHttpRequest();
 // on success callback function
 xhr.onload = function() {
 	let reimbursements = JSON.parse(this.responseText);
+
 	reimbursements.forEach((reimbursement) => {
 		document.getElementsByClassName('reimbursement-body')[0].innerHTML += `
 			<tr id="${reimbursement.reimbId}">
@@ -12,7 +13,7 @@ xhr.onload = function() {
 				<td>${new Date(reimbursement.reimbSubmitted).toString().substring(4,15)}</td>
 				<td>${reimbursement.reimbStatusId}</td>
 				<td>${reimbursement.reimbResolver}</td>
-	            <td>${new Date(reimbursement.reimbResolved).toString().substring(4,15)}</td>
+				<td>${new Date(reimbursement.reimbResolved).toString().substring(4,15)}</td>  
 			</tr>
 		`;
 	})

@@ -23,9 +23,8 @@ public class EmployeeController {
 		}
 	}
 
-	public void newReimbursementRequest(HttpServletRequest req) {
-		log.debug("In newReimbursementRequest");
-		ersReimbursementService.addNewReimbursementDetails(req);
+	public void newReimbursementRequest(HttpServletRequest req, HttpServletResponse resp) {
+		ersReimbursementService.addNewReimbursementDetails(req, resp);
 
 	}
 }
