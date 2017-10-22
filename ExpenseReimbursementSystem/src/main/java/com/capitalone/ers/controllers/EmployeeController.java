@@ -31,6 +31,5 @@ public class EmployeeController {
 
 	public void updateReimbursementRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
 		ersReimbursementService.updateReimbursementDetails(req, resp);
-		
 	}
 }

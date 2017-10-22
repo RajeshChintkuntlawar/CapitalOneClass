@@ -64,7 +64,6 @@ public class FrontController extends DefaultServlet {
 		} else if (requestUrl.startsWith("/updateDenyRequest")) {
 				try {
 					employeeController.updateReimbursementRequest(req, resp);
-					resp.sendRedirect("/ExpenseReimbursementSystem/static/viewAllRequests.html");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

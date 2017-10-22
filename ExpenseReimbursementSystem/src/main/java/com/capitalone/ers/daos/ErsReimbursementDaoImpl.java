@@ -121,8 +121,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			stmt.setInt(4, inputData.getReimbTypeId());
 
 			log.debug("Insert Statement Prepared: " + stmt);
-
-			stmt.executeQuery();
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,7 +150,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			}
 			stmt.setInt(3, reimbursementIdUpdated);
 
-			stmt.executeQuery();
+			stmt.executeUpdate();
 		}
 	}
 }
