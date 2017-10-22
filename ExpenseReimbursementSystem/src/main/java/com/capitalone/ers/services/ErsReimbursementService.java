@@ -1,6 +1,7 @@
 package com.capitalone.ers.services;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +34,7 @@ public class ErsReimbursementService {
 		ObjectMapper om = new ObjectMapper();
 		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
 		try {
-			
+
 			String ersReimbursementJson = ow
 					.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(currentUser.getErsUsersId()));
 
@@ -60,7 +61,7 @@ public class ErsReimbursementService {
 		ersReimbursementType = ersReimbursementTypeDaoImpl.findByType((request.getParameter("ReimbursementType")));
 
 		ersReimbursement.setReimbTypeId(ersReimbursementType.getReimbTypeId());
-		
+
 		ersReimbursementDaoImpl.addReimbursement(ersReimbursement);
 	}
 
@@ -76,6 +77,14 @@ public class ErsReimbursementService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void updateReimbursementDetails(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, SQLException {
+
+		// Approve or Deny a reimbursement based on manager action
+
+		ersReimbursementDaoImpl.updateReimbursement(request.getReader().readLine().toString());
 	}
 
 }

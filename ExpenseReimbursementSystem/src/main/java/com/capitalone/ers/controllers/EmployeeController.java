@@ -1,6 +1,7 @@
 package com.capitalone.ers.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,5 +27,10 @@ public class EmployeeController {
 	public void newReimbursementRequest(HttpServletRequest req, HttpServletResponse resp) {
 		ersReimbursementService.addNewReimbursementDetails(req, resp);
 
+	}
+
+	public void updateReimbursementRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
+		ersReimbursementService.updateReimbursementDetails(req, resp);
+		
 	}
 }

@@ -14,7 +14,11 @@
 			action="/ExpenseReimbursementSystem/viewAllRequests" method="get">
 			<h2>Following is the list of Tickets submitted by all employees:</h2>
 		</form>
-		<br> <br>
+		<br> <br> Filter the data by Reimbursement Status:
+	<button type="button" class="btn btn-warning" name="pending-data">PENDING</button>
+	<button type="button" class="btn btn-primary" name="approved-data">APPROVED</button>
+	<button type="button" class="btn btn-danger" name="denied-data">DENIED</button>
+	<br> <br>
 		<table class="allrequests-table">
 			<thead>
 				<tr>

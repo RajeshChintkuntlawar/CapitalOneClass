@@ -18,7 +18,7 @@ public class ErsUsersService {
 	public void login(HttpServletRequest req, HttpServletResponse resp) {
 		ErsUserRolesDaoImpl ersUserRolesDaoImpl = new ErsUserRolesDaoImpl();
 
-		String username = req.getParameter("username");
+		String username = req.getParameter("username").toLowerCase();
 		String password = req.getParameter("password");
 		ErsUserRoles ersUserRoles = null;
 

@@ -40,7 +40,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			while (rs.next()) {
 
 				if (rs.getString("reimb_resolver") != null) {
-					
+
 					// Retrieve the resolver name
 					PreparedStatement stmtNew = conn
 							.prepareStatement("SELECT ers_first_name FROM ers_users Where ers_users_id = "
@@ -51,14 +51,14 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 					if (rsNew.next()) {
 						log.debug(rsNew.getString("ers_first_name"));
 					}
-					
+
 					ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
 							rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 							rs.getString("reimb_description"), rs.getString("reimb_receipt"),
 							rs.getString("ers_first_name"), rsNew.getString("ers_first_name"),
 							rs.getString("reimb_status"), rs.getString("reimb_type")));
 				} else {
-					//Add Resolver Name as blank					
+					// Add Resolver Name as blank
 					ersReimbursements.add(new ErsReimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
 							rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 							rs.getString("reimb_description"), rs.getString("reimb_receipt"),
@@ -86,8 +86,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 							+ " FROM ers_reimbursement as ersreimb, ers_reimbursement_status as ersstatus, ers_reimbursement_type as erstype, ers_users as users"
 							+ " Where ersreimb.reimb_status_id = ersstatus.reimb_status_id"
 							+ " And ersreimb.reimb_type_id = erstype.reimb_type_id"
-							+ " And ersreimb.reimb_author = users.ers_users_id"
-							+ " order by reimb_id");
+							+ " And ersreimb.reimb_author = users.ers_users_id" + " order by reimb_id");
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -123,19 +122,36 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 
 			log.debug("Insert Statement Prepared: " + stmt);
 
-			ResultSet rs = stmt.executeQuery();
-			
-//			log.debug("rs.rowInserted() " + rs.rowInserted());
-
-//			if (rs.rowInserted()) {
-//				log.debug("Data Retrieval from ERS_REIMBURSEMENT is successful for " + inputData.toString());
-//			} else {
-//				log.debug("Data Retrieval from ERS_REIMBURSEMENT failed for " + inputData.toString());
-//			}
+			stmt.executeQuery();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	public void updateReimbursement(String managerRequest) throws SQLException {
+
+		try (Connection conn = conUtil.getConnection()) {
+
+			String formattedRequest = managerRequest.substring(1, managerRequest.length() - 1);
+
+			String[] splitManagerAction = formattedRequest.split(",");
+			int reimbursementIdUpdated = Integer.parseInt(splitManagerAction[0]);
+
+			PreparedStatement stmt = conn.prepareStatement(
+					"UPDATE ers_reimbursement SET reimb_resolved=current_timestamp, reimb_resolver=?, reimb_status_id=? WHERE reimb_id=?");
+
+			stmt.setInt(1, 2);
+			if (splitManagerAction[1].equals("Approve")) {
+				stmt.setInt(2, 2);
+			} else if (splitManagerAction[1].equals("Deny")) {
+				stmt.setInt(2, 3);
+			} else {
+				stmt.setInt(2, 1);
+			}
+			stmt.setInt(3, reimbursementIdUpdated);
+
+			stmt.executeQuery();
+		}
+	}
 }
