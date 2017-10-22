@@ -7,7 +7,7 @@ xhr.onload = function() {
 	reimbursements.forEach((reimbursement) => {
 		document.getElementsByClassName('reimbursement-body')[0].innerHTML += `
 			<tr id="${reimbursement.reimbId}">
-		<td>${reimbursement.reimbTypeId}</td>
+		<td>${reimbursement.reimbType}</td>
 				<td>$${reimbursement.reimbAmount}</td>
 				<td>${reimbursement.reimbDescription}</td>
 				<td>${new Date(reimbursement.reimbSubmitted).toString().substring(4,15)}</td>

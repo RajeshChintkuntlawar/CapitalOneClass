@@ -12,7 +12,8 @@ public class ErsReimbursement {
 	private String ReimbAuthor;
 	private String ReimbResolver;
 	private String ReimbStatusId;
-	private String ReimbTypeId;
+	private int ReimbTypeId;
+	private String ReimbType;
 
 	public ErsReimbursement() {
 		super();
@@ -21,7 +22,7 @@ public class ErsReimbursement {
 
 	public ErsReimbursement(int reimbId, Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, String reimbReceipt, String reimbAuthor, String reimbResolver,
-			String reimbStatusId, String reimbTypeId) {
+			String reimbStatusId, int reimbTypeId) {
 		super();
 		ReimbId = reimbId;
 		ReimbAmount = reimbAmount;
@@ -35,11 +36,20 @@ public class ErsReimbursement {
 		ReimbTypeId = reimbTypeId;
 	}
 
-	public ErsReimbursement(Double reimbAmount, String reimbDescription, String reimbTypeId) {
+	public ErsReimbursement(int reimbId, Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
+			String reimbDescription, String reimbReceipt, String reimbAuthor, String reimbResolver,
+			String reimbStatusId, String reimbType) {
 		super();
+		ReimbId = reimbId;
 		ReimbAmount = reimbAmount;
+		ReimbSubmitted = reimbSubmitted;
+		ReimbResolved = reimbResolved;
 		ReimbDescription = reimbDescription;
-		ReimbTypeId = reimbTypeId;
+		ReimbReceipt = reimbReceipt;
+		ReimbAuthor = reimbAuthor;
+		ReimbResolver = reimbResolver;
+		ReimbStatusId = reimbStatusId;
+		ReimbType = reimbType;
 	}
 
 	public int getReimbId() {
@@ -62,16 +72,16 @@ public class ErsReimbursement {
 		return ReimbSubmitted;
 	}
 
-	public void setReimbSubmitted(Timestamp timestamp) {
-		ReimbSubmitted = timestamp;
+	public void setReimbSubmitted(Timestamp reimbSubmitted) {
+		ReimbSubmitted = reimbSubmitted;
 	}
 
 	public Timestamp getReimbResolved() {
 		return ReimbResolved;
 	}
 
-	public void setReimbResolved(Timestamp timestamp) {
-		ReimbResolved = timestamp;
+	public void setReimbResolved(Timestamp reimbResolved) {
+		ReimbResolved = reimbResolved;
 	}
 
 	public String getReimbDescription() {
@@ -114,12 +124,20 @@ public class ErsReimbursement {
 		ReimbStatusId = reimbStatusId;
 	}
 
-	public String getReimbTypeId() {
+	public int getReimbTypeId() {
 		return ReimbTypeId;
 	}
 
-	public void setReimbTypeId(String reimbTypeId) {
+	public void setReimbTypeId(int reimbTypeId) {
 		ReimbTypeId = reimbTypeId;
+	}
+
+	public String getReimbType() {
+		return ReimbType;
+	}
+
+	public void setReimbType(String reimbType) {
+		ReimbType = reimbType;
 	}
 
 	@Override
@@ -135,7 +153,8 @@ public class ErsReimbursement {
 		result = prime * result + ((ReimbResolver == null) ? 0 : ReimbResolver.hashCode());
 		result = prime * result + ((ReimbStatusId == null) ? 0 : ReimbStatusId.hashCode());
 		result = prime * result + ((ReimbSubmitted == null) ? 0 : ReimbSubmitted.hashCode());
-		result = prime * result + ((ReimbTypeId == null) ? 0 : ReimbTypeId.hashCode());
+		result = prime * result + ((ReimbType == null) ? 0 : ReimbType.hashCode());
+		result = prime * result + ReimbTypeId;
 		return result;
 	}
 
@@ -190,10 +209,12 @@ public class ErsReimbursement {
 				return false;
 		} else if (!ReimbSubmitted.equals(other.ReimbSubmitted))
 			return false;
-		if (ReimbTypeId == null) {
-			if (other.ReimbTypeId != null)
+		if (ReimbType == null) {
+			if (other.ReimbType != null)
 				return false;
-		} else if (!ReimbTypeId.equals(other.ReimbTypeId))
+		} else if (!ReimbType.equals(other.ReimbType))
+			return false;
+		if (ReimbTypeId != other.ReimbTypeId)
 			return false;
 		return true;
 	}
@@ -203,7 +224,9 @@ public class ErsReimbursement {
 		return "ErsReimbursement [ReimbId=" + ReimbId + ", ReimbAmount=" + ReimbAmount + ", ReimbSubmitted="
 				+ ReimbSubmitted + ", ReimbResolved=" + ReimbResolved + ", ReimbDescription=" + ReimbDescription
 				+ ", ReimbReceipt=" + ReimbReceipt + ", ReimbAuthor=" + ReimbAuthor + ", ReimbResolver=" + ReimbResolver
-				+ ", ReimbStatusId=" + ReimbStatusId + ", ReimbTypeId=" + ReimbTypeId + "]";
+				+ ", ReimbStatusId=" + ReimbStatusId + ", ReimbTypeId=" + ReimbTypeId + ", ReimbType=" + ReimbType
+				+ "]";
 	}
+
 
 }

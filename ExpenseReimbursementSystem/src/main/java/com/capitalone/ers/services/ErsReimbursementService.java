@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.capitalone.ers.beans.ErsReimbursement;
+import com.capitalone.ers.beans.ErsReimbursementType;
 import com.capitalone.ers.beans.ErsUsers;
 import com.capitalone.ers.daos.ErsReimbursementDaoImpl;
+import com.capitalone.ers.daos.ErsReimbursementTypeDaoImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -19,16 +21,21 @@ public class ErsReimbursementService {
 	ErsReimbursementDaoImpl ersReimbursementDaoImpl = new ErsReimbursementDaoImpl();
 	ErsReimbursement ersReimbursement = new ErsReimbursement();
 
+	ErsReimbursementTypeDaoImpl ersReimbursementTypeDaoImpl = new ErsReimbursementTypeDaoImpl();
+	ErsReimbursementType ersReimbursementType = new ErsReimbursementType();
+
 	public void getPastRequestDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
+
 		// Retrieve the session user id
 		ErsUsers currentUser = (ErsUsers) req.getSession().getAttribute("currentUser");
-		
+
 		// jackson code for converting to json
 		ObjectMapper om = new ObjectMapper();
 		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
 		try {
-			String ersReimbursementJson = ow.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(currentUser.getErsUsersId()));
+			
+			String ersReimbursementJson = ow
+					.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(currentUser.getErsUsersId()));
 
 			// write to response body
 			log.debug(ersReimbursementJson);
@@ -47,11 +54,13 @@ public class ErsReimbursementService {
 
 		ersReimbursement.setReimbAmount(Double.parseDouble(request.getParameter("ReimbursementAmount").toString()));
 		ersReimbursement.setReimbDescription(request.getParameter("ReimbursementDescription"));
-		ersReimbursement.setReimbTypeId((request.getParameter("ReimbTypeId")));
-		ersReimbursement.setReimbAuthor(Integer.toString(currentUser.getErsUsersId()));
-		
-		log.debug(ersReimbursement.toString());
+		Integer userId = currentUser.getErsUsersId();
+		ersReimbursement.setReimbAuthor(userId.toString());
 
+		ersReimbursementType = ersReimbursementTypeDaoImpl.findByType((request.getParameter("ReimbursementType")));
+
+		ersReimbursement.setReimbTypeId(ersReimbursementType.getReimbTypeId());
+		
 		ersReimbursementDaoImpl.addReimbursement(ersReimbursement);
 	}
 
@@ -67,7 +76,6 @@ public class ErsReimbursementService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 }

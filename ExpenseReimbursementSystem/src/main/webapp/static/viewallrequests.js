@@ -6,7 +6,7 @@ xhr.onload = function() {
 	reimbursements.forEach((reimbursement) => {
 		document.getElementsByClassName('allrequests-body')[0].innerHTML += `
 			<tr id="${reimbursement.reimbId}">
-		<td>${reimbursement.reimbTypeId}</td>
+		        <td>${reimbursement.reimbType}</td>
 				<td>$${reimbursement.reimbAmount}</td>
 				<td>${reimbursement.reimbDescription}</td>
 				<td>${reimbursement.reimbSubmitted}</td>

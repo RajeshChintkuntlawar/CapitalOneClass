@@ -54,11 +54,9 @@ public class FrontController extends DefaultServlet {
 
 		if (requestUrl.startsWith("/ErsLogin")) {
 			ersUserController.processPostRequests(req, resp);
-// following condition is moved to doGet
-//		} else if (requestUrl.startsWith("/viewPastTickets")) {
-//			employeeController.viewPastRequests(req, resp);
 		} else if (requestUrl.startsWith("/static/static/newReimbursementRequest.html")) {
 			employeeController.newReimbursementRequest(req, resp);
+			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewPastTickets.html");
 		} else {
 			log.debug("requestUrl received in doPost " + requestUrl);
 //			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
