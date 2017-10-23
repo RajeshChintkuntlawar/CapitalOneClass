@@ -128,10 +128,10 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 		}
 	}
 
-	public void updateReimbursement(String managerRequest) throws SQLException {
+	public void updateReimbursement(String managerRequest, int resolverId) throws SQLException {
 
 		try (Connection conn = conUtil.getConnection()) {
-
+			
 			String formattedRequest = managerRequest.substring(1, managerRequest.length() - 1);
 
 			String[] splitManagerAction = formattedRequest.split(",");
@@ -140,7 +140,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			PreparedStatement stmt = conn.prepareStatement(
 					"UPDATE ers_reimbursement SET reimb_resolved=current_timestamp, reimb_resolver=?, reimb_status_id=? WHERE reimb_id=?");
 
-			stmt.setInt(1, 2);
+			stmt.setInt(1, resolverId);
 			if (splitManagerAction[1].equals("Approve")) {
 				stmt.setInt(2, 2);
 			} else if (splitManagerAction[1].equals("Deny")) {
@@ -148,6 +148,7 @@ public class ErsReimbursementDaoImpl implements ErsReimbursementDao {
 			} else {
 				stmt.setInt(2, 1);
 			}
+			
 			stmt.setInt(3, reimbursementIdUpdated);
 
 			stmt.executeUpdate();

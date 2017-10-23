@@ -84,8 +84,13 @@ public class ErsReimbursementService {
 	public void updateReimbursementDetails(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, SQLException {
 
+		// Retrieve the session user id
+		ErsUsers currentUser = (ErsUsers) request.getSession().getAttribute("currentUser");
+		Integer resolverId = currentUser.getErsUsersId();
+
+		
 		// Approve or Deny a reimbursement based on manager action
-		ersReimbursementDaoImpl.updateReimbursement(request.getReader().readLine().toString());
+		ersReimbursementDaoImpl.updateReimbursement(request.getReader().readLine().toString(), resolverId);
 	}
 
 }
