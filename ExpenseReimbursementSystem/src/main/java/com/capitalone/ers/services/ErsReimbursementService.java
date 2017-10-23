@@ -35,6 +35,8 @@ public class ErsReimbursementService {
 		ObjectWriter ow = om.writer().withDefaultPrettyPrinter();
 		try {
 
+			log.debug("Current User " + currentUser);
+			log.debug("currentUser.getErsUsersId() " + currentUser.getErsUsersId());
 			String ersReimbursementJson = ow
 					.writeValueAsString(ersReimbursementDaoImpl.findByAuthor(currentUser.getErsUsersId()));
 

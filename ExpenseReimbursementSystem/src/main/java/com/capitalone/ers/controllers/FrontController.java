@@ -45,6 +45,7 @@ public class FrontController extends DefaultServlet {
 			log.debug("viewAllRequests");
 			managerController.viewAllRequests(req, resp);
 		} else {
+			log.debug("Redirecting to ERS Login Page");
 			req.getRequestDispatcher("/static/ErsLogin.html").forward(req, resp);
 		}
 	}
@@ -56,6 +57,7 @@ public class FrontController extends DefaultServlet {
 		log.debug("proceeding with the post request using url: " + requestUrl);
 
 		if (requestUrl.startsWith("/ErsLogin")) {
+			// clear session data
 			req.getSession().removeAttribute("currentUser");
 			ersUserController.processPostRequests(req, resp);
 		} else if (requestUrl.startsWith("/static/static/newReimbursementRequest.html")) {

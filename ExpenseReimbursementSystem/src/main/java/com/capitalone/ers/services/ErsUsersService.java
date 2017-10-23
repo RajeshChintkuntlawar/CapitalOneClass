@@ -29,11 +29,11 @@ public class ErsUsersService {
 				if (ersUserRoles.getUserRole().equals("EMPLOYEE")) {
 					resp.sendRedirect("/ExpenseReimbursementSystem/static/employee.html");
 				} else {
-
 					resp.sendRedirect("/ExpenseReimbursementSystem/static/manager.html");
 
 				}
 			} else {
+				resp.getWriter().print("Hello");
 				log.debug("Failed to retrieve the User Role.  Redirecting to Login Page.");
 				resp.sendRedirect("/ExpenseReimbursementSystem/static/ErsLogin.html");
 			}
@@ -51,6 +51,8 @@ public class ErsUsersService {
 
 		ersUsers = ersUsersDaoImpl.findUserId(username);
 
+		// setting session data
+		log.debug("Storing user details in session variable " + ersUsers);
 		req.getSession().setAttribute("currentUser", ersUsers);
 //		ErsUsers currentUser = (ErsUsers) req.getSession().getAttribute("currentUser");
 //		log.debug("currentUser " + currentUser.getErsUsersId());

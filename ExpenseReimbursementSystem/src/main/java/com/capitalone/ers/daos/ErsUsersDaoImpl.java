@@ -24,7 +24,7 @@ public class ErsUsersDaoImpl implements ErsUsersDao {
 					"SELECT ers_users_id, ers_user_name, ers_password, ers_first_name, ers_last_name, user_email, user_role_id"
 							+ " FROM ers_users Where ers_user_name = ?");
 
-			stmt.setString(1, username);
+			stmt.setString(1, username.toLowerCase());
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
@@ -33,6 +33,7 @@ public class ErsUsersDaoImpl implements ErsUsersDao {
 						rs.getString("ers_password"), rs.getString("ers_first_name"), rs.getString("ers_last_name"),
 						rs.getString("user_email"), rs.getInt("user_role_id"));
 
+				log.debug("ersUsers data to store in the session variables " + ersUsers);
 				return ersUsers;
 			} else {
 				log.debug(username + " is an unknown User. ERS doesn't have any details about " + username);
