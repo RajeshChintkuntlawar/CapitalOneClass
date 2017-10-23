@@ -83,7 +83,6 @@ public class ErsReimbursementService {
 			throws IOException, SQLException {
 
 		// Approve or Deny a reimbursement based on manager action
-
 		ersReimbursementDaoImpl.updateReimbursement(request.getReader().readLine().toString());
 	}
 

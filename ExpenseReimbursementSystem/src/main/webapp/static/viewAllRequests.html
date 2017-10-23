@@ -15,9 +15,10 @@
 			<h2>Following is the list of Tickets submitted by all employees:</h2>
 		</form>
 		<br> <br> Filter the data by Reimbursement Status:
-	<button type="button" class="btn btn-warning" name="pending-data">PENDING</button>
-	<button type="button" class="btn btn-primary" name="approved-data">APPROVED</button>
-	<button type="button" class="btn btn-danger" name="denied-data">DENIED</button>
+	<button type="button" class="btn btn-primary" name="all-data" onclick="allReimbursements()">All Tickets</button>
+	<button type="button" class="btn btn-warning" name="pending-data" onclick="retrievePendingTickets()">Pending Tickets</button>
+	<button type="button" class="btn btn-success" name="approved-data" onclick="retrieveApprovedTickets()">Approved Tickets</button>
+	<button type="button" class="btn btn-danger" name="denied-data" onclick="retrieveDeniedTickets()">Denied Tickets</button>
 	<br> <br>
 		<table class="allrequests-table">
 			<thead>

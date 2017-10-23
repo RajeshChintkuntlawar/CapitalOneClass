@@ -62,12 +62,12 @@ public class FrontController extends DefaultServlet {
 			employeeController.newReimbursementRequest(req, resp);
 			resp.sendRedirect("/ExpenseReimbursementSystem/static/viewPastTickets.html");
 		} else if (requestUrl.startsWith("/updateDenyRequest")) {
-				try {
-					employeeController.updateReimbursementRequest(req, resp);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				employeeController.updateReimbursementRequest(req, resp);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			log.debug("requestUrl received in doPost " + requestUrl);
 			// req.getRequestDispatcher("/static/ErsLogin.html").forward(req,
