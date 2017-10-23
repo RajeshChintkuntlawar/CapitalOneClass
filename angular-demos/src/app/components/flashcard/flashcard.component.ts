@@ -7,10 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class FlashcardComponent {
   @Input()
-  private flashcard;
-  private display = false;
+  public flashcard;
+  public display = false;
 
-  toggleAnswer() {
+  public toggleAnswer() {
     this.display = !this.display;
   }
 }
+

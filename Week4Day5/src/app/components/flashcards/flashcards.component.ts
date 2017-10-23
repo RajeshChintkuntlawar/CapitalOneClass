@@ -8,8 +8,8 @@ import { FlashcardService } from '../../services/flashcard.service';
   templateUrl: './flashcards.component.html'
 })
 export class FlashcardsComponent implements OnInit {
-  private flashcards = [];
-  private fieldFromService;
+  public flashcards = [];
+  public fieldFromService;
 
   constructor(private fcs: FlashcardService) {
 

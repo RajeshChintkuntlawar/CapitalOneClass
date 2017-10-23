@@ -7,7 +7,7 @@ import { FlashcardService } from '../../services/flashcard.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  private fromService;
+  public fromService;
 
   constructor(private fcs: FlashcardService) {
 

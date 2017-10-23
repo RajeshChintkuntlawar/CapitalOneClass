@@ -21,8 +21,8 @@ public class BankAccountDaoJDBC implements BankAccountDao {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM bank_accounts as ba JOIN user_bank_accounts as uba ON (ba.bank_id = uba.bank_id) WHERE uba.user_id = '" + userId + "'");
 
 			while (rs.next()) {
-				accounts.add(
-						new BankAccount(rs.getInt("bank_id"), rs.getDouble("balance"), rs.getString("account_type")));
+				BankAccount acc = new BankAccount(rs.getInt("bank_id"), rs.getDouble("balance"), rs.getString("account_type"));
+				accounts.add(acc);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

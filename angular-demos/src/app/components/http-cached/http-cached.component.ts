@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs/Rx';
 })
 export class HttpCachedComponent implements OnInit, OnDestroy {
   // not done yet
-  private flashcards;
-  private flashcardsObserver: Subscription;
-  private filterCompleted = false;
+  public flashcards;
+  public flashcardsObserver: Subscription;
+  public filterCompleted = false;
 
   constructor(private flashCardService: FlashcardService) {
 
@@ -31,7 +31,7 @@ export class HttpCachedComponent implements OnInit, OnDestroy {
 
   }
 
-  private toggleCompleted() {
+  public toggleCompleted() {
     this.filterCompleted = !this.filterCompleted;
   }
 

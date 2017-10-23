@@ -1,3 +1,7 @@
+function approve(id) {
+	alert(id);
+}
+
 let xhr = new XMLHttpRequest();
 
 // on success callback function
@@ -5,7 +9,7 @@ xhr.onload = function() {
 	let flashcards = JSON.parse(this.responseText);
 	flashcards.forEach((flashcard) => {
 		document.getElementsByClassName('flashcard-body')[0].innerHTML += `
-			<tr id="${flashcard.id}">
+			<tr id="${flashcard.id}" onClick="approve(${flashcard.id})">
 				<td> 
 					${flashcard.question}
 				</td>

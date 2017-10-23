@@ -6,7 +6,7 @@ import { Http } from '@angular/http';
 export class FlashcardService {
   public reusableField = 5;
 
-  constructor (@Inject(Http) private http: Http) {
+  constructor( @Inject(Http) private http: Http) {
 
   }
 

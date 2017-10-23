@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './event-binding.component.html'
 })
 export class EventBindingComponent {
-  private counter = 0;
+  public counter = 0;
 
-  private incrementCounter() {
+  public incrementCounter() {
     this.counter++;
   }
 }

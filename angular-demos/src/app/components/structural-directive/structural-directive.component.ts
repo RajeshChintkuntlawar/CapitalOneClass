@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class StructuralDirectiveComponent {
   // not done yet
-  private flashcards = [
+  public flashcards = [
     {
       question: 'question 1',
       answer: 'answer to q1',
@@ -24,9 +24,9 @@ export class StructuralDirectiveComponent {
     }
   ];
 
-  private filterCompleted = false;
+  public filterCompleted = false;
 
-  private toggleCompleted() {
+  public toggleCompleted() {
     this.filterCompleted = !this.filterCompleted;
   }
 }

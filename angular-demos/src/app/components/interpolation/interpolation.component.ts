@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './interpolation.component.html'
 })
 export class InterpolationComponent {
-  private interpolate = '{{ }} will bind the view to data from the component class'
-  private someField = {
+  public interpolate = '{{ }} will bind the view to data from the component class'
+  public someField = {
     id: 1,
     fname: 'Blake',
     lname: 'Kruppa'
