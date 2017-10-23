@@ -1,0 +1,230 @@
+--2.1 SELECT
+-- Task – Select all records from the Employee table.
+
+set schema 'chinook';
+
+SELECT * 
+FROM "Employee";
+
+-- Task – Select all records from the Employee table where last name is King.
+
+SELECT * 
+FROM "Employee"
+WHERE "LastName" = 'King';
+
+-- Task – Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+
+SELECT * 
+FROM "Employee"
+WHERE "FirstName" = 'Andrew'
+  AND "ReportsTo" is NULL;
+
+-- 2.2 ORDER BY
+-- Task – Select all albums in Album table and sort result set in descending order by title.
+
+SELECT * 
+FROM "Album"
+ORDER BY "Title" DESC;
+
+-- Task – Select first name from Customer and sort result set in ascending order by city
+
+SELECT "FirstName" 
+FROM "Customer"
+ORDER BY "City";
+
+-- 2.3 INSERT INTO
+-- Task – Insert two new records into Genre table
+
+INSERT INTO "Genre"(
+	"GenreId", "Name")
+	VALUES (26, 'Kids');
+
+INSERT INTO "Genre"(
+	"GenreId", "Name")
+	VALUES (27, 'Tech');
+    
+-- Task – Insert two new records into Employee table
+
+INSERT INTO chinook."Employee"(
+	"EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email")
+	VALUES (9, 'Paul', 'John', 'IT Manager', 1, '1980-01-01 00:00:00', '2000-11-01 00:00:00', '11 Main St', 'Washington', 'DC','USA', '12345', '+1(100) 200-3000', '+1(100) 200-3000', 'John@chinookcorp.com');
+    
+INSERT INTO chinook."Employee"(
+	"EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email")
+	VALUES (10, 'Sam', 'Adams', 'IT Staff', 1, '1970-01-01 00:00:00', '1990-07-01 00:00:00', '11 Main St', 'Washington', 'DC','USA', '12345', '+1(101) 200-3000', '+1(102) 200-3000', 'Sam@chinookcorp.com');
+    
+-- Task – Insert two new records into Customer table
+
+INSERT INTO chinook."Customer"(
+	"CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId")
+	VALUES (60, 'High', 'Jake', null, '11 New St', 'Paris', null, 'France', '33000', '+33 01 32 43 32 43', null, 'jake@fakemail.com', 4);
+    
+INSERT INTO chinook."Customer"(
+	"CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId")
+	VALUES (61, 'Low', 'Nate', null, '123 Broad St', 'Seattle', 'Washington', 'USA', '21232', '+1(000) 000-0001', null, 'nate@fakemail.com', 4);
+    
+-- 2.4 UPDATE
+-- Task – Update Aaron Mitchell in Customer table to Robert Walter
+
+SELECT "CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId"
+	FROM "Customer"
+    WHERE "FirstName" = 'Aaron' and "LastName" = 'Mitchell';
+    
+    UPDATE "Customer"
+	SET  "FirstName"='Robert', "LastName"='Walter'
+    WHERE "FirstName" = 'Aaron' and "LastName" = 'Mitchell';
+    
+SELECT "CustomerId", "FirstName", "LastName", "Company", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email", "SupportRepId"
+	FROM "Customer"
+    WHERE "FirstName" = 'Robert' and "LastName" = 'Walter';
+    
+-- Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+
+SELECT "ArtistId", "Name"
+FROM "Artist"
+Where "Name" = 'Creedence Clearwater Revival';
+    
+Update "Artist"
+SET "Name" = 'CCR'
+    Where "Name" = 'Creedence Clearwater Revival';
+    
+SELECT "ArtistId", "Name"
+FROM "Artist"
+    Where "Name" = 'CCR';
+
+-- 2.5 LIKE
+-- Task – Select all invoices with a billing address like “T%”
+
+SELECT "InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total"
+	FROM "Invoice"
+    Where "BillingAddress" like 'T%';
+
+-- 2.6 BETWEEN
+-- Task – Select all invoices that have a total between 15 and 50
+
+SELECT "InvoiceId", "CustomerId", "InvoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total"
+	FROM "Invoice"
+    WHERE "Total" between 15 and 50;
+    
+-- Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+
+SELECT "EmployeeId", "LastName", "FirstName", "Title", "ReportsTo", "BirthDate", "HireDate", "Address", "City", "State", "Country", "PostalCode", "Phone", "Fax", "Email"
+	FROM "Employee"
+    WHERE "HireDate" BETWEEN '2003-06-01 00:00:00' AND '2004-03-01 00:00:00';
+
+-- 2.7 DELETE
+-- Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+
+-- Solution: Update the Contrints on the Invoice and InvoiceLine Tables to allow the data deletion from Cusomter Table.
+
+ALTER TABLE "Invoice" 
+       DROP CONSTRAINT "FK_InvoiceCustomerId";
+	 
+ALTER TABLE "Invoice" 
+        ADD CONSTRAINT "FK_InvoiceCustomerId"
+	    FOREIGN KEY ("CustomerId")
+	            REFERENCES "Customer" ("CustomerId")
+	            ON DELETE CASCADE;
+	 
+ALTER TABLE "InvoiceLine" 
+       DROP CONSTRAINT "FK_InvoiceLineInvoiceId";
+	 
+ALTER TABLE "InvoiceLine" 
+        ADD CONSTRAINT "FK_InvoiceLineInvoiceId"
+	    FOREIGN KEY ("InvoiceId")
+	            REFERENCES "Invoice" ("InvoiceId")
+	            ON DELETE CASCADE;
+	 
+DELETE FROM "Customer" 
+      WHERE "FirstName" = 'Robert' 
+        AND "LastName" = 'Walter';
+
+-- Verification: Following query should not return the data as it is deleted above
+
+SELECT *
+  FROM "Customer"
+      WHERE "FirstName" = 'Robert' 
+        AND "LastName" = 'Walter';
+
+-- 7.0 JOINS
+-- In this section you will be working with combing various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
+-- 7.1 INNER
+-- Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+
+SELECT "FirstName" || ' ' || "LastName" as "Name", "InvoiceId"
+	FROM "Customer" as cust INNER JOIN "Invoice" inv 
+    ON (cust."CustomerId" = inv."CustomerId");
+
+-- 7.2 OUTER
+-- Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+
+SELECT cust."CustomerId", "FirstName", "LastName", "InvoiceId", "Total"
+	FROM "Customer" as cust FULL OUTER JOIN "Invoice" inv 
+    ON (cust."CustomerId" = inv."CustomerId");
+
+-- 7.3 RIGHT
+-- Task – Create a right join that joins album and artist specifying artist name and title.
+
+SELECT "Name", "Title"
+	FROM "Album" as alb RIGHT JOIN "Artist" as art
+    ON (alb."ArtistId" = art."ArtistId");
+
+--7.3 ( b) RIGHT INNER JOIN
+--Task – Create a right join that joins Playlist and playlisttrack, Track  specifying TrackId.
+-- Added 7.3 (b) based on the discussion in the class
+
+SELECT *
+  FROM "Playlist" as pl 
+  INNER JOIN "PlaylistTrack" as plt 
+          ON (pl."PlaylistId" = plt."PlaylistId")
+  INNER JOIN "Track" as Trk
+          ON (plt."TrackId" = Trk."TrackId");
+                    
+-- 7.4 CROSS
+-- Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+
+SELECT * 
+  FROM "Album" CROSS JOIN "Artist"
+  ORDER BY "Name" ASC;
+
+-- 7.5 SELF
+-- Task – Perform a self-join on the employee table, joining on the reportsto column.
+
+SELECT * 
+	FROM "Employee" emp1, "Employee" emp2
+    WHERE emp1."ReportsTo" = emp2."ReportsTo";
+
+-- 8.0 Indexes
+-- In this section you will be creating Indexes on various tables. Indexes can speed up performance of reading data.
+-- 8.1 Clustered Indexes
+-- Task – Create a clustered index on of table of your choice
+
+-- Creating the cluster index
+
+CREATE INDEX employee_name_idx
+  ON "Employee"
+  USING btree
+  ("LastName");
+
+-- Applying the newly created cluster index to the table
+
+ALTER TABLE "Employee" CLUSTER ON employee_name_idx;
+
+-- Recluster "Employee" usinb the newly created cludex index employee_name_idx
+
+CLUSTER "Employee";
+
+-- Verify the number of indexes defined on "Employee" table
+
+SELECT tablename,
+  indexes [1],
+  indexes [2],
+  indexes [3],
+  indexes [4]
+FROM (SELECT
+  tablename,
+  array_agg(indexname) AS indexes
+FROM pg_indexes
+WHERE schemaname = 'chinook'
+  AND tablename = 'Employee'
+GROUP BY tablename) as sub;
