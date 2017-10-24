@@ -25,7 +25,8 @@ public class ErsUsersService {
 		ersUserRoles = ersUserRolesDaoImpl.findUserRole(username, password);
 
 		try {
-			if (!ersUserRoles.getUserRole().equals(null)) {
+			log.debug("ersUserRoles.getUserRole() " + ersUserRoles.getUserRole());
+			if (!ersUserRoles.getUserRole().equals("unknown")) {
 				if (ersUserRoles.getUserRole().equals("EMPLOYEE")) {
 					resp.sendRedirect("/ExpenseReimbursementSystem/static/employee.html");
 				} else {
@@ -33,9 +34,8 @@ public class ErsUsersService {
 
 				}
 			} else {
-				resp.getWriter().print("Hello");
 				log.debug("Failed to retrieve the User Role.  Redirecting to Login Page.");
-				resp.sendRedirect("/ExpenseReimbursementSystem/static/ErsLogin.html");
+				resp.sendRedirect("/ExpenseReimbursementSystem/static/ErsLoginError.html");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

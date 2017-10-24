@@ -26,7 +26,10 @@
 
     <div class="container">
       <form class="form-signin" action="/ExpenseReimbursementSystem/ErsLogin" method="post">
-        <h2 class="form-signin-heading">Please Login</h2> <br>
+        <h2 class="form-signin-heading">Please Login</h2>
+        <br>
+        <p class="error-text">Invalid User Credentials.  Please try Again.</p>
+        <br>
         <label for="inputLoginId" class="sr-only">User Name</label>
         <input type="text" name="username" id="username" class="form-control" placeholder="Enter User Name" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -38,6 +41,6 @@
       <br>
       <br>
       <p>The Expense Reimbursement System (ERS) manages the process of reimbursing employees for expenses incurred while on company time. All employees in the company can login and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company and can also approve and deny requests for expense reimbursement.</p>
-    </div> 
+    </div>
   </body>
 </html>

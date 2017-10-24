@@ -3,19 +3,20 @@
 <head>
 <title>Employee Past Tickets</title>
 <!-- Bootstrap core CSS -->
-<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="./css/pasttickets.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<form class="form-signin"
 			action="/ExpenseReimbursementSystem/viewPastTickets" method="post">
 			<h2>Following Tickets are submitted by you in the Past:</h2>
 		</form>
 		<br> <br>
-		<table class="reimbursement-table">
+		<table class="reimbursement-table table">
 			<thead>
 				<tr>
 					<th>Reimbursement Type</th>
@@ -33,15 +34,13 @@
 		</table>
 
 		<br>
-		<button type="button" onclick="location.href='./employee.html';"">Go Back to Employee Options</button>
-		<button type="button" onclick="location.href='./newReimbursementRequest.html';">Submit a New Reimbursement Request</button>
+		<button type="button" class="btn btn-lg" onclick="location.href='./employee.html';">Go
+			Back to Employee Options</button>
+		<button type="button" class="btn btn-lg btn-primary" 
+			onclick="location.href='./newReimbursementRequest.html';">Submit
+			a New Reimbursement Request</button>
 		<script type="text/javascript" src="./viewpasttickets.js"></script>
 	</div>
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>

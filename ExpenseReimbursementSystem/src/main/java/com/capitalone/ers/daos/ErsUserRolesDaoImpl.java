@@ -32,11 +32,11 @@ public class ErsUserRolesDaoImpl implements ErsUserRolesDao {
 			if (rs.next()) {
 				log.debug(username + "'s role is " + rs.getString("user_role"));
 				ersUserRoles = new ErsUserRoles(rs.getInt("ers_user_role_id"), rs.getString("user_role"));
-				return ersUserRoles;
 			} else {
 				log.debug(username + " is an unknown User");
-				return null;
+				ersUserRoles = new ErsUserRoles(0,"unknown");
 			}
+			return ersUserRoles;
 
 		} catch (SQLException e) {
 			e.printStackTrace();

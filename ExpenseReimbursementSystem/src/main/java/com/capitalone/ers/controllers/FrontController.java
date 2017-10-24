@@ -67,13 +67,10 @@ public class FrontController extends DefaultServlet {
 			try {
 				employeeController.updateReimbursementRequest(req, resp);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			log.debug("requestUrl received in doPost " + requestUrl);
-			// req.getRequestDispatcher("/static/ErsLogin.html").forward(req,
-			// resp);
 		}
 
 	}

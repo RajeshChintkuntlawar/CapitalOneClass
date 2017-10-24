@@ -3,9 +3,10 @@
 <head>
 <title>All Employees Tickets</title>
 <!-- Bootstrap core CSS -->
-<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="./css/pasttickets.css" rel="stylesheet">
+<link href="./css/alltickets.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,8 +21,8 @@
 	<button type="button" class="btn btn-success" name="approved-data" onclick="retrieveApprovedTickets()">Approved Tickets</button>
 	<button type="button" class="btn btn-danger" name="denied-data" onclick="retrieveDeniedTickets()">Denied Tickets</button>
 	<br> <br>
-		<table class="allrequests-table">
-			<thead>
+		<table class="allrequests-table table">
+			<thead class="allrequests-head">
 				<tr>
 					<th>Reimbursement Type</th>
 					<th>Amount</th>
@@ -37,16 +38,11 @@
 			</tbody>
 		</table>
 		<br>
-		<button type="button" onclick="location.href='./manager.html';"">Go
+		<button type="button" class="button btn btn-lg" onclick="location.href='./manager.html';"">Go
 			Back to Manager Options</button>
 		<script type="text/javascript" src="./viewallrequests.js"></script>
 
 	</div>
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>
