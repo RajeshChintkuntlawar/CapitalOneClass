@@ -55,16 +55,20 @@ public class ErsReimbursementService {
 		// Create data for Insert
 		ErsReimbursement ersReimbursement = new ErsReimbursement();
 
-		ersReimbursement.setReimbAmount(Double.parseDouble(request.getParameter("ReimbursementAmount").toString()));
-		ersReimbursement.setReimbDescription(request.getParameter("ReimbursementDescription"));
-		Integer userId = currentUser.getErsUsersId();
-		ersReimbursement.setReimbAuthor(userId.toString());
+		if (!request.getParameter("ReimbursementAmount").isEmpty()) {
+			ersReimbursement.setReimbAmount(Double.parseDouble(request.getParameter("ReimbursementAmount").toString()));
+			ersReimbursement.setReimbDescription(request.getParameter("ReimbursementDescription"));
+			Integer userId = currentUser.getErsUsersId();
+			ersReimbursement.setReimbAuthor(userId.toString());
 
-		ersReimbursementType = ersReimbursementTypeDaoImpl.findByType((request.getParameter("ReimbursementType")));
+			ersReimbursementType = ersReimbursementTypeDaoImpl.findByType((request.getParameter("ReimbursementType")));
 
-		ersReimbursement.setReimbTypeId(ersReimbursementType.getReimbTypeId());
+			ersReimbursement.setReimbTypeId(ersReimbursementType.getReimbTypeId());
 
-		ersReimbursementDaoImpl.addReimbursement(ersReimbursement);
+			ersReimbursementDaoImpl.addReimbursement(ersReimbursement);
+		} else {
+			log.debug("Incorrect Amount");
+		}
 	}
 
 	public void getAllsRequestsDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -88,7 +92,6 @@ public class ErsReimbursementService {
 		ErsUsers currentUser = (ErsUsers) request.getSession().getAttribute("currentUser");
 		Integer resolverId = currentUser.getErsUsersId();
 
-		
 		// Approve or Deny a reimbursement based on manager action
 		ersReimbursementDaoImpl.updateReimbursement(request.getReader().readLine().toString(), resolverId);
 	}
